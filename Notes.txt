@@ -1,0 +1,2 @@
+utiliser les sorted list
+Savoir absolument expliquer les lignes de code
