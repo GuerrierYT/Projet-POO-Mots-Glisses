@@ -10,7 +10,7 @@ namespace Projet_POO_Mots_Glisses
     {
         static void Main(string[] args)
         {
-            //Hey
+            Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
         }
     }
 }
