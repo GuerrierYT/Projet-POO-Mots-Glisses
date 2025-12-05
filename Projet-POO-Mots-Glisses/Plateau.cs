@@ -13,21 +13,43 @@ namespace Projet_POO_Mots_Glisses
         private char[,] plateau;
 
         // Constructeurs
-        public Plateau()
+        public Plateau(string filename)
         {
-            ReadFile("Lettres.txt");
+            ReadFile(filename);
         }
+
+        // Propriétés
+
+        // Méthodes
         public void ReadFile(string filename)
         {
             StreamReader flux = null;
             string line;
             int i = 0;
-            char[] sep = {';'};
-            plateau = new char[,];
+            char[] sep = { ';' };
+            plateau = new char[8, 8];
+            try
+            {
+                flux = new StreamReader(filename);
+                while ((line = flux.ReadLine()) != null && i < 8)
+                {
+                    char[] lettres = line.Split(sep).Select(s => Convert.ToChar(s)).ToArray();
+                    for (int j = 0; j < 8 && j < lettres.Length; j++)
+                    {
+                        plateau[i, j] = lettres[j];
+                    }
+                    i++;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (flux != null)
+                    flux.Close();
+            }
         }
-        // Propriétés
-
-        // Méthodes
-
     }
 }
