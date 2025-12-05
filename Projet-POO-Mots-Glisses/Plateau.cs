@@ -21,7 +21,34 @@ namespace Projet_POO_Mots_Glisses
         // Propriétés
 
         // Méthodes
-        public void ReadFile(string filename)
+        public void WriteFile(string filename)
+        {
+            StreamWriter flux = null;
+            try
+            {
+                flux = new StreamWriter(filename);
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        flux.Write(plateau[i, j]);
+                        if (j < 7)
+                            flux.Write(";");
+                    }
+                    flux.WriteLine();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (flux != null)
+                    flux.Close();
+            }
+        }
+        private void ReadFile(string filename)
         {
             StreamReader flux = null;
             string line;
@@ -50,6 +77,19 @@ namespace Projet_POO_Mots_Glisses
                 if (flux != null)
                     flux.Close();
             }
+        }
+        public override string ToString()
+        {
+            string result = "";
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    result += plateau[i, j] + " ";
+                }
+                result += "\n";
+            }
+            return result;
         }
     }
 }
