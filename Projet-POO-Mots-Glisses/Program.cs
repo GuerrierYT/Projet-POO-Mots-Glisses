@@ -26,8 +26,13 @@ namespace Projet_POO_Mots_Glisses
                 Console.WriteLine("Veuillez saisir un mot d'au moins 2 lettres :");
                 mot = Console.ReadLine();
                 estValide = EstMotValide(mot);
+                if(estValide == false)
+                {
+                    Console.WriteLine("Le mot ne doit contenir que des lettres.");
+                }
             }
-            while (mot.Length < 2 || estValide = false);
+            while (mot.Length < 2 || estValide == false);
+            return mot.ToUpper();
         }
         static bool EstMotValide(string mot)
         {
