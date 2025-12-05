@@ -9,18 +9,28 @@ namespace Projet_POO_Mots_Glisses
 {
     internal class Dictionnaire
     {
+        #region Attributs
         string nom;
-        private List<string> mots;
+        private List<string[]> mots;
 
-        // Attributs
+        #endregion
+
+        #region Constructeurs
         public Dictionnaire(string nom)
         {
             this.nom = nom;
-            mots = new List<string>();
+            this.mots = LireMots();
         }
 
+        #endregion
 
+        #region Propriétés
 
+        #endregion
+        
+
+        #region Méthodes
+        #region Lire les mots depuis le fichier "MotsFrancais.txt"
         public static List<string[]> LireMots()
         {
             string filename = "MotsFrancais.txt";
@@ -43,12 +53,8 @@ namespace Projet_POO_Mots_Glisses
             }
         }
 
-    }
-        // Constructeurs
+        #endregion
 
-        // Propriétés
-
-        // Méthodes
-
+        #endregion
     }
 }
