@@ -31,5 +31,23 @@ namespace Projet_POO_Mots_Glisses
         {
             scores.Add(score);
         }
+        public bool Contient(string mot)
+        {
+            return mots.Contains(mot);
+        }
+        public override string ToString()
+        {
+            string res = "";
+            int score = 0;
+            res += nom;
+            res += "\nMots trouvés : ";
+            for (int i = 0; i < mots.Count; i++)
+            {
+                res += mots[i].ToString() + " ";
+                score += scores[i];
+            }
+            res += "\nScore : " + score;
+            return res;
+        }
     }
 }
