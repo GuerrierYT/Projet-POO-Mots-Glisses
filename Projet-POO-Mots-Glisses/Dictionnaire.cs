@@ -8,13 +8,13 @@ namespace Projet_POO_Mots_Glisses
 {
     internal class Dictionnaire
     {
-        // Attributs
-
+       a // Attributs
+            p,d
         // Constructeurs
 
         // Propriétés
 
         // Méthodes
-
+        q
     }
 }
