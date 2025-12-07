@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Projet_POO_Mots_Glisses
 {
@@ -67,7 +68,7 @@ namespace Projet_POO_Mots_Glisses
 
         #region tri fusion
         // On a repris le tr fusion du TD de la récusrivité, et on l'a adapté pour les string[]
-        public void TrierMots()
+        public void Tri_Fusion()
         {
             for (int i = 0; i < mots.Count; i++)
             {
@@ -123,7 +124,7 @@ namespace Projet_POO_Mots_Glisses
 
         #region Recherche dichotomique
         // On a adapté la recherche dichotomique du TD de la récusrivité pour les string[]
-        public bool RechercheDicho(string motCherche)  //On suppose que notre tableau est déjà trié
+        public bool RechDichoRecursif(string motCherche)  //On suppose que notre tableau est déjà trié
         {
             int index = motCherche.Length - 2; // -2 car on n'a pas de mot de taille 1 et l'index commence à 0
             //Securité
@@ -161,6 +162,7 @@ namespace Projet_POO_Mots_Glisses
 
         #endregion
 
+        #region ToString
         public override string ToString()   // Utilisé pour vérifier le fonctionnement de la lecture et du tri
         {
             // Sécurité
@@ -184,6 +186,23 @@ namespace Projet_POO_Mots_Glisses
             }
             return resultat;
         }
+
+        private int CompterDico()
+        {
+            int result = 0;
+            for (int i = 0; i < mots.Count; i++)
+            {
+                result += mots[i].Length;
+            }
+        }
+
+            public string toString()    //Le toString demandé dans le sujet
+        {
+            taille = CompterDico();
+            return $"Nom : {nom}, Langue : français, Taille : {taille}"
+        }
+
+        #endregion
 
         #endregion
     }

@@ -15,7 +15,7 @@ namespace Projet_POO_Mots_Glisses
             string mot = SaisirMot();
             Console.WriteLine($"Le mot saisi est : {mot}");
             Dictionnaire dico = CreerETtrierDico();
-            Console.WriteLine(dico.RechercheDicho(mot));
+            Console.WriteLine(dico.RechDichoRecursif(mot));
             Console.ReadKey();
         }
         #endregion
@@ -26,7 +26,7 @@ namespace Projet_POO_Mots_Glisses
         {
             Dictionnaire dictionnaire = new Dictionnaire("Dictionnaire Français");
             Console.WriteLine("Lecture du fichier terminé");
-            dictionnaire.TrierMots();
+            dictionnaire.Tri_Fusion();
             Console.WriteLine("Tri terminé");
             return dictionnaire;
         }
