@@ -58,6 +58,7 @@ namespace Projet_POO_Mots_Glisses
             else
             {
                 Console.WriteLine("Ce fichier n'existe pas.");
+                Console.WriteLine("Je le cherche ici : " + Path.GetFullPath(filename));
                 return new List<string[]>();
             }
         }

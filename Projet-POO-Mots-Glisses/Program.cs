@@ -15,7 +15,6 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine($"Le mot saisi est : {mot}");
 
             Dictionnaire dictionnaire = new Dictionnaire("Dictionnaire Français");
-            dictionnaire.Mots = LireMots();
             Console.WriteLine(dictionnaire.ToString());
             Console.WriteLine("PUIS");
             dictionnaire.TrierMots();
