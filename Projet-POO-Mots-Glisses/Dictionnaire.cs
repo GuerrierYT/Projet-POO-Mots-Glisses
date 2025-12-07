@@ -125,12 +125,12 @@ namespace Projet_POO_Mots_Glisses
         // On a adapté la recherche dichotomique du TD de la récusrivité pour les string[]
         public bool RechercheDicho(string motCherche)  //On suppose que notre tableau est déjà trié
         {
+            int index = motCherche.Length - 2; // -2 car on n'a pas de mot de taille 1 et l'index commence à 0
             //Securité
-            if (indexTableau < 0 || indexTableau >= mots.Count)
+            if (index < 0 || index >= mots.Count)
             {
                 return false;
             }
-            int index = motCherche.Length - 2; // -2 car on n'a pas de mot de taille 1 et l'index commence à 0
             return RechercheDichoRecursif(mots[index], 0, mots[index].Length - 1, motCherche);
         }
 
