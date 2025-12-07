@@ -8,17 +8,27 @@ namespace Projet_POO_Mots_Glisses
 {
     internal class Program
     {
+        #region Main
         static void Main(string[] args)
         {
             Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
             string mot = SaisirMot();
             Console.WriteLine($"Le mot saisi est : {mot}");
-
-            Dictionnaire dictionnaire = new Dictionnaire("Dictionnaire Français");
-            Console.WriteLine("PUIS");
-            dictionnaire.TrierMots();
-            Console.WriteLine(dictionnaire.ToString());
+            Dictionnaire dico = CreerETtrierDico();
+            Console.WriteLine(dico.RechercheDicho(mot));
             Console.ReadKey();
+        }
+        #endregion
+
+        #region methodes
+
+        static Dictionnaire CreerETtrierDico()
+        {
+            Dictionnaire dictionnaire = new Dictionnaire("Dictionnaire Français");
+            Console.WriteLine("Lecture du fichier terminé");
+            dictionnaire.TrierMots();
+            Console.WriteLine("Tri terminé");
+            return dictionnaire;
         }
 
         #region Saisie et validation du mot
@@ -50,6 +60,8 @@ namespace Projet_POO_Mots_Glisses
             }
             return true;
         }
+
+        #endregion
 
         #endregion
     }

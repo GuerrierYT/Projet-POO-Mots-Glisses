@@ -58,7 +58,7 @@ namespace Projet_POO_Mots_Glisses
             else
             {
                 Console.WriteLine("Ce fichier n'existe pas.");
-                Console.WriteLine("Je le cherche ici : " + Path.GetFullPath(filename));
+                Console.WriteLine("Je le cherche ici : " + Path.GetFullPath(filename));// GetFullPath aide à localiser le fichier car nous avons eu un problème
                 return new List<string[]>();
             }
         }
@@ -66,7 +66,7 @@ namespace Projet_POO_Mots_Glisses
         #endregion
 
         #region tri fusion
-
+        // On a repris le tr fusion du TD de la récusrivité, et on l'a adapté pour les string[]
         public void TrierMots()
         {
             for (int i = 0; i < mots.Count; i++)
@@ -121,11 +121,48 @@ namespace Projet_POO_Mots_Glisses
         }
         #endregion
 
-        public override string ToString()
+        #region Recherche dichotomique
+        // On a adapté la recherche dichotomique du TD de la récusrivité pour les string[]
+        public bool RechercheDicho(string motCherche)  //On suppose que notre tableau est déjà trié
         {
-            // Sécurité si la liste est vide ou null
+            int index = motCherche.Length - 2; // -2 car on n'a pas de mot de taille 1 et l'index commence à 0
+            return RechercheDichoRecursif(tab, 0, tab.Length - 1, motCherche);
+        }
+
+
+        private bool RechercheDichoRecursif(string[] tab, int min, int max, string motCherche)  //On suppose que notre tableau est déjà trié
+        {
+            // Condition d'arrêt
+            if (min > max)
+            {
+                Console.WriteLine($"\"{motCherche}\" non trouvé dans le dictionnaire.");
+                return false;
+            }
+            int milieu = (min + max) / 2;
+            int res = motCherche.CompareTo(tab[milieu]);    // res sera 0 si égal, <0 si motCherche est avant, >0 si après
+            if (res == 0)   // Alors c'est le bon mot
+            {
+                return true; 
+            }
+            else if (res < 0)   // Le mot cherché est avant dans l'ordre alaphabetétique
+            {
+                return RechercheDichoRecursif(tab, min, milieu - 1, motCherche);
+            }
+            else    // Alors le mot cherché est après dans l'ordre alphabétique
+            {
+                return RechercheDichoRecursif(tab, milieu + 1, max, motCherche);
+            }
+        }
+
+        #endregion
+
+        public override string ToString()   // Utilisé pour vérifier le fonctionnement de la lecture et du tri
+        {
+            // Sécurité
             if (mots == null || mots.Count == 0)
+            {
                 return "Le dictionnaire est vide.";
+            }
 
             string resultat = "Contenu du dictionnaire :\n";
 
@@ -142,6 +179,7 @@ namespace Projet_POO_Mots_Glisses
             }
             return resultat;
         }
+
         #endregion
     }
 }
