@@ -27,7 +27,7 @@ namespace Projet_POO_Mots_Glisses
         #region Propriétés
 
         #endregion
-        
+
 
         #region Méthodes
         #region Lire les mots depuis le fichier "MotsFrancais.txt"
@@ -38,9 +38,9 @@ namespace Projet_POO_Mots_Glisses
             {
                 string[] lines = File.ReadAllLines(filename);   // On lit toutes les lignes du fichier dans le tableau lines
                 List<string[]> tableauTrie = new List<string[]>();  // On crée une liste qui va regrouper les sous tableaux des mots triés
-                for (int i = 0; i<lines.Length; i+=2)
+                for (int i = 0; i < lines.Length; i += 2)
                 {
-                    string line = lines[i+1];
+                    string line = lines[i + 1];
                     string[] mots = line.Split(' ');
                     tableauTrie.Add(mots);
                 }
@@ -49,7 +49,7 @@ namespace Projet_POO_Mots_Glisses
             else
             {
                 Console.WriteLine("Ce fichier n'existe pas.");
-                return null;
+                return new List<string[]>();
             }
         }
 
@@ -62,7 +62,6 @@ namespace Projet_POO_Mots_Glisses
             for (int i = 0; i < mots.Count; i++)
             {
                 TriFusion(mots[i], 0, mots[i].Length - 1);
-                Console.WriteLine(string.Join(mots[i]));
             }
         }
 
@@ -112,6 +111,27 @@ namespace Projet_POO_Mots_Glisses
         }
         #endregion
 
+        public override string ToString()
+        {
+            // Sécurité si la liste est vide ou null
+            if (mots == null || mots.Count == 0)
+                return "Le dictionnaire est vide.";
+
+            string resultat = "Contenu du dictionnaire :\n";
+
+            // On parcourt chaque tableau de mots (chaque ligne valide du fichier)
+            for (int i = 0; i < mots.Count; i++)
+            {
+                resultat += $"Ligne {i + 1} : ";
+                // On ajoute tous les mots de la ligne séparés par un espace
+                foreach (string mot in mots[i])
+                {
+                    resultat += mot + " ";
+                }
+                resultat += "\n"; // Retour à la ligne après chaque tableau
+            }
+            return resultat;
+        }
         #endregion
     }
 }

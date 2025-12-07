@@ -16,8 +16,10 @@ namespace Projet_POO_Mots_Glisses
             Console.ReadLine();
 
             Dictionnaire dictionnaire = new Dictionnaire("Dictionnaire Français");
+            Console.ReadLine(dictionnaire.ToString());
+            Console.ReadLine("PUIS");
             dictionnaire.TrierMots();
-            Console.ReadLine();
+            Console.ReadLine(dictionnaire.ToString());
         }
 
         #region Saisie et validation du mot
