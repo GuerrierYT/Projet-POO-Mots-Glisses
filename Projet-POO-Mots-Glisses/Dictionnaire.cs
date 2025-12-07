@@ -25,7 +25,16 @@ namespace Projet_POO_Mots_Glisses
         #endregion
 
         #region Propriétés
-
+        public string Nom
+        {
+            get { return this.nom; }
+            set { this.nom = value; }
+        }
+        public List<string[]> Mots
+        {
+            get { return this.mots; }
+            set { this.mots = value; }
+        }
         #endregion
 
 

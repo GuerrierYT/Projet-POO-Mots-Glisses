@@ -13,13 +13,14 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
             string mot = SaisirMot();
             Console.WriteLine($"Le mot saisi est : {mot}");
-            Console.ReadLine();
 
             Dictionnaire dictionnaire = new Dictionnaire("Dictionnaire Français");
-            Console.ReadLine(dictionnaire.ToString());
-            Console.ReadLine("PUIS");
+            dictionnaire.Mots = LireMots();
+            Console.WriteLine(dictionnaire.ToString());
+            Console.WriteLine("PUIS");
             dictionnaire.TrierMots();
-            Console.ReadLine(dictionnaire.ToString());
+            Console.WriteLine(dictionnaire.ToString());
+            Console.ReadLine();
         }
 
         #region Saisie et validation du mot
