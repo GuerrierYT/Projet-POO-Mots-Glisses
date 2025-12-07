@@ -196,10 +196,26 @@ namespace Projet_POO_Mots_Glisses
             }
         }
 
+        private int CompterLettre(char lettre)
+        {
+            int result = 0;
+            for (int i = 0; i < mots.Count; i++)
+            {
+                for (int j = 0; j < mots[i].Length; j++)
+                {
+                    if (mots[i][j][0] == lettre)
+                    {
+                        result++;
+                    }
+                }
+            }
+            return result;
+        }
+
             public string toString()    //Le toString demandé dans le sujet
         {
             taille = CompterDico();
-            return $"Nom : {nom}, Langue : français, Taille : {taille}"
+            return $"Nom : {nom},\nLangue : français,\nTaille : {taille},\nNombre de A : {CompterLettre(A)}"
         }
 
         #endregion

@@ -16,6 +16,7 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine($"Le mot saisi est : {mot}");
             Dictionnaire dico = CreerETtrierDico();
             Console.WriteLine(dico.RechDichoRecursif(mot));
+            Console.WriteLine(dico.ToString());
             Console.ReadKey();
         }
         #endregion
