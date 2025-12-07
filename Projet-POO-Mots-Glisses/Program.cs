@@ -14,6 +14,10 @@ namespace Projet_POO_Mots_Glisses
             string mot = SaisirMot();
             Console.WriteLine($"Le mot saisi est : {mot}");
             Console.ReadLine();
+
+            Dictionnaire dictionnaire = new Dictionnaire("Dictionnaire Français");
+            dictionnaire.TrierMots();
+            Console.ReadLine();
         }
 
         #region Saisie et validation du mot
