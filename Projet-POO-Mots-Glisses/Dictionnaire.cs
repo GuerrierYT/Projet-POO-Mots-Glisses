@@ -194,6 +194,7 @@ namespace Projet_POO_Mots_Glisses
             {
                 result += mots[i].Length;
             }
+            return result;
         }
 
         private int CompterLettre(char lettre)
@@ -214,8 +215,14 @@ namespace Projet_POO_Mots_Glisses
 
             public string toString()    //Le toString demandé dans le sujet
         {
-            taille = CompterDico();
-            return $"Nom : {nom},\nLangue : français,\nTaille : {taille},\nNombre de A : {CompterLettre(A)}"
+            int taille = CompterDico();
+            return $"Nom : {nom},\nLangue : français,\nTaille : {taille},\nNombre de A : {CompterLettre('A')},\nNombre de B : {CompterLettre('B')}" +
+                $",\nNombre de C : {CompterLettre('C')},\nNombre de D : {CompterLettre('D')},\nNombre de E : {CompterLettre('E')},\nNombre de F : {CompterLettre('F')}" +
+                $",\nNombre de G : {CompterLettre('G')},\nNombre de H : {CompterLettre('H')},\nNombre de I : {CompterLettre('I')},\nNombre de J : {CompterLettre('J')}" +
+                $",\nNombre de K : {CompterLettre('K')},\nNombre de L : {CompterLettre('L')},\nNombre de M : {CompterLettre('M')},\nNombre de N : {CompterLettre('N')}" +
+                $",\nNombre de O : {CompterLettre('O')},\nNombre de P : {CompterLettre('P')},\nNombre de Q : {CompterLettre('Q')},\nNombre de R : {CompterLettre('R')}" +
+                $",\nNombre de S : {CompterLettre('S')},\nNombre de T : {CompterLettre('T')},\nNombre de U : {CompterLettre('U')},\nNombre de V : {CompterLettre('V')}" +
+                $",\nNombre de W : {CompterLettre('W')},\nNombre de X : {CompterLettre('X')},\nNombre de Y : {CompterLettre('Y')},\nNombre de Z : {CompterLettre('Z')}";
         }
 
         #endregion
