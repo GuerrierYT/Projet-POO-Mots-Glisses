@@ -37,6 +37,11 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine(plateau);
             plateau.WriteFile("plateautest.csv");
             /*
+            Lettre lettre = new Lettre();
+            Plateau plateau = new Plateau(lettre);
+            Console.WriteLine(plateau);
+            plateau.WriteFile("plateautest.csv");
+            /*
             Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
 >>>>>>> b33cb436ab1d3684ee435734eb37bc615e075308
             string mot = SaisirMot();
