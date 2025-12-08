@@ -96,6 +96,10 @@ namespace Projet_POO_Mots_Glisses
                     flux.Close();
             }
         }
+        public void RechercheMot(string mot)
+        {
+
+        }
         public override string ToString() // Affichage du plateau
         {
             string result = "";
