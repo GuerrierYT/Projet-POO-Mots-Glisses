@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_POO_Mots_Glisses
 {
-    internal class Program
+    internal class Program  // Le main
     {
         #region Main
         static void Main(string[] args)
@@ -15,8 +15,9 @@ namespace Projet_POO_Mots_Glisses
             string mot = SaisirMot();
             Console.WriteLine($"Le mot saisi est : {mot}");
             Dictionnaire dico = CreerETtrierDico();
+            Console.WriteLine(dico.ToString());
             Console.WriteLine(dico.RechDichoRecursif(mot));
-            Console.WriteLine(dico.toString());
+            Console.WriteLine(dico.toString()); //Attention à ne pas faire ToString car ça retourne le dico en entier et très long à charger
             Console.ReadKey();
         }
         #endregion
