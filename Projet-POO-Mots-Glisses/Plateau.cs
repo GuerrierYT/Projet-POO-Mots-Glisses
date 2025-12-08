@@ -18,6 +18,18 @@ namespace Projet_POO_Mots_Glisses
         {
             ReadFile(filename);
         }
+        public Plateau()
+        {
+            Random random = new Random();
+            plateau = new char[8, 8];
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    plateau[i, j] = ' ';
+                }
+            }
+        }
         #endregion
 
         #region Propriétés
