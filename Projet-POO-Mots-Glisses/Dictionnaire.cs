@@ -117,6 +117,7 @@ namespace Projet_POO_Mots_Glisses
             }
 
             while (i <= milieu)
+            {
                 temp[k++] = tab[i++];
 
             while (j <= max)
