@@ -108,53 +108,84 @@ namespace Projet_POO_Mots_Glisses
         }
         public Stack<(int, int, int)> RechercheMot(string mot) // A finir
         {
-            List<int> depart = AppartientBase(mot);
+            List<int> depart = AppartientBase(mot); // Positions de départ possibles
             if (depart.Count == 0)
             {
                 Console.WriteLine("Le mot ne peut pas commencer, il n'y a pas de lettre de départ correspondante.");
                 return null;
             }
-            Stack<(int, int, int)> position = new Stack<(int, int, int)>();
+            Stack<(int, int, int)> positions = new Stack<(int, int, int)>(); // Pile pour stocker les positions (ligne, colonne, direction)
             for (int i = 0; i < depart.Count; i++) // Pour chaque position de départ possible
             {
-                if (position.Count != mot.Length) // Si le mot n'a pas encore été trouvé
+                // On réinitialise la pile pour chaque nouvelle tentative de départ
+                positions.Clear();
+
+                // On empile la position de départ : Ligne, Colonne, Direction (0 = rien testé)
+                positions.Push((taille - 1, depart[i], 0));
+                while (positions.Count > 0 && positions.Count < mot.Length)
                 {
-                    Console.WriteLine("Recherche du mot à partir de la position de départ en colonne " + depart[i]);
+                    // 1. On récupère l'élément du haut sans le retirer définitivement pour l'instant
+                    var (x, y, dir) = positions.Pop();
+
+                    // 2. On passe à la direction suivante
+                    dir++;
+
+                    // On a maintenant 3 directions max : 1, 2, 3. 
+                    // Si dir > 3, on a tout exploré pour cette case, on ne la remet pas (backtracking).
+                    if (dir <= 3)
                     {
-                        position.Push((taille - 1, depart[i], 0)); // On empile la position de départ (ligne, colonne, 0)
-                        while (position.Count < mot.Length && position.Count > 0) // Tant que la pile n'est pas vide et que le mot n'est pas entièrement trouvé
-                        {
-                            int x = position.Peek().Item1; // Ligne actuelle
-                            int y = position.Peek().Item2; // Colonne actuelle
-                            int dir = position.Peek().Item3; // Direction déjà explorée
-                            int j = position.Count; // Index de la lettre à chercher dans le mot
-                            if (x > 0 && plateau[x, y] == mot[j])
-                            {
-                                Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + x + ", " + y + ")");
-                                position.Push((x - 1, y, 1)); // On empile la nouvelle position (ligne - 1, même colonne, 1)
-                            }
-                            else if (x < taille - 1 && plateau[x + 1, y] == mot[j])
-                            {
-                                Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + (x + 1) + ", " + y + ")");
-                                position.Push((x + 1, y, 2)); // On empile la nouvelle position (ligne + 1, même colonne, 2)
-                            }
-                            else if (y > 0 && plateau[x, y - 1] == mot[j])
-                            {
-                                Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + x + ", " + (y - 1) + ")");
-                                position.Push((x, y - 1, 3)); // On empile la nouvelle position (même ligne, colonne - 1, 3)
-                            }
-                            else
-                            {
-                                Console.WriteLine("Lettre non trouvée : " + mot[j]);
-                                position.Pop(); // On dépile la position actuelle car aucune direction n'a fonctionné
-                            }
-                        }
+                        positions.Push((x, y, dir)); // On remet l'élément avec sa nouvelle direction
+                    }
+                    else
+                    {
+                        continue; // On abandonne cette case et on retourne à la précédente au prochain tour
+                    }
+
+                    // 3. Calcul des coordonnées du voisin
+                    int nextX = x;
+                    int nextY = y;
+
+                    switch (dir)
+                    {
+                        case 1: nextY = y - 1; break; // Gauche
+                        case 2: nextY = y + 1; break; // Droite
+                        case 3: nextX = x - 1; break; // Haut (x diminue pour monter dans un tableau)
+                    }
+
+                    // Index de la lettre cherchée
+                    int indexLettre = positions.Count;
+
+                    // 4. Vérifications
+                    if (IsValide(nextX, nextY) &&
+                        plateau[nextX, nextY] == mot[indexLettre] &&
+                        !DejaVisite(positions, nextX, nextY))
+                    {
+                        positions.Push((nextX, nextY, 0)); // Trouvé ! On empile le voisin
                     }
                 }
+                // Si on sort de la boucle et qu'on a la bonne longueur, c'est gagné !
+                if (positions.Count == mot.Length)
+                {
+                    Console.WriteLine($"Mot '{mot}' trouvé !");
+                    return positions;
+                }
             }
-
-
-            return position;
+            Console.WriteLine("Mot non trouvé.");
+            return null;
+        }
+        // Vérifie si les coordonnées sont dans la grille
+        private bool IsValide(int x, int y)
+        {
+            return x >= 0 && x < taille && y >= 0 && y < taille;
+        }
+        // Vérifie si la case (x,y) est déjà présente dans la pile (pour éviter de se mordre la queue)
+        private bool DejaVisite(Stack<(int, int, int)> pile, int x, int y)
+        {
+            foreach (var item in pile)
+            {
+                if (item.Item1 == x && item.Item2 == y) return true;
+            }
+            return false;
         }
         public override string ToString() // Affichage du plateau
         {
