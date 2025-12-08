@@ -1,10 +1,6 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Globalization;
+using System.IO;
 
 namespace Projet_POO_Mots_Glisses
 {
@@ -148,7 +144,7 @@ namespace Projet_POO_Mots_Glisses
             int res = motCherche.CompareTo(tab[milieu]);    // res sera 0 si égal, <0 si motCherche est avant, >0 si après
             if (res == 0)   // Alors c'est le bon mot
             {
-                return true; 
+                return true;
             }
             else if (res < 0)   // Le mot cherché est avant dans l'ordre alaphabetétique
             {
@@ -213,7 +209,7 @@ namespace Projet_POO_Mots_Glisses
             return result;
         }
 
-            public string toString()    //Le toString demandé dans le sujet
+        public string toString()    //Le toString demandé dans le sujet
         {
             int taille = CompterDico();
             return $"Nom : {nom},\nLangue : français,\nTaille : {taille},\nNombre de A : {CompterLettre('A')},\nNombre de B : {CompterLettre('B')}" +
