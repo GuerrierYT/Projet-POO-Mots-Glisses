@@ -8,10 +8,11 @@ using System.Globalization;
 
 namespace Projet_POO_Mots_Glisses
 {
-    internal class Dictionnaire
+    internal class Dictionnaire     // Classe non terminée
     {
         #region Attributs
         string nom;
+        string langue;
         private List<string[]> mots;
 
         #endregion
@@ -20,6 +21,7 @@ namespace Projet_POO_Mots_Glisses
         public Dictionnaire(string nom)
         {
             this.nom = nom;
+            this.langue = "français";
             this.mots = LireMots();
         }
 
@@ -36,10 +38,18 @@ namespace Projet_POO_Mots_Glisses
             get { return this.mots; }
             set { this.mots = value; }
         }
+        public string Langue
+        {
+            get { return this.langue; }
+            set { this.langue = value; }
+        }
+
         #endregion
 
         #region Méthodes
+
         #region Lire les mots depuis le fichier "MotsFrancais.txt"
+
         public static List<string[]> LireMots()
         {
             string filename = "MotsFrancais.txt";
@@ -47,9 +57,9 @@ namespace Projet_POO_Mots_Glisses
             {
                 string[] lines = File.ReadAllLines(filename);   // On lit toutes les lignes du fichier dans le tableau lines
                 List<string[]> tableauTrie = new List<string[]>();  // On crée une liste qui va regrouper les sous tableaux des mots triés
-                for (int i = 0; i < lines.Length; i += 2)
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    string line = lines[i + 1];
+                    string line = lines[i];
                     string[] mots = line.Split(' ');
                     tableauTrie.Add(mots);
                 }
@@ -66,6 +76,7 @@ namespace Projet_POO_Mots_Glisses
         #endregion
 
         #region tri fusion
+
         // On a repris le tr fusion du TD de la récusrivité, et on l'a adapté pour les string[]
         public void Tri_Fusion()
         {
@@ -77,11 +88,10 @@ namespace Projet_POO_Mots_Glisses
 
         private void TriFusion(string[] tab, int min, int max)
         {
-            // CORRECTION IMPORTANTE :
-            // La condition d'arrêt était inversée. On s'arrête si min >= max
-            // (c'est-à-dire s'il reste 0 ou 1 seul élément).
-            if (min >= max)
+            if (min >= max)     //Condition d'arrêt
+            {
                 return;
+            }
 
             int milieu = (min + max) / 2;
             TriFusion(tab, min, milieu);
@@ -119,9 +129,11 @@ namespace Projet_POO_Mots_Glisses
             for (int t = 0; t < temp.Length; t++)
                 tab[min + t] = temp[t];
         }
+
         #endregion
 
         #region Recherche dichotomique
+
         // On a adapté la recherche dichotomique du TD de la récusrivité pour les string[]
         public bool RechDichoRecursif(string motCherche)  //On suppose que notre tableau est déjà trié
         {
@@ -215,7 +227,7 @@ namespace Projet_POO_Mots_Glisses
             public string toString()    //Le toString demandé dans le sujet
         {
             int taille = CompterDico();
-            return $"Nom : {nom},\nLangue : français,\nTaille : {taille},\nNombre de A : {CompterLettre('A')},\nNombre de B : {CompterLettre('B')}" +
+            return $"Nom : {nom},\nLangue : {langue},\nTaille : {taille},\nNombre de A : {CompterLettre('A')},\nNombre de B : {CompterLettre('B')}" +
                 $",\nNombre de C : {CompterLettre('C')},\nNombre de D : {CompterLettre('D')},\nNombre de E : {CompterLettre('E')},\nNombre de F : {CompterLettre('F')}" +
                 $",\nNombre de G : {CompterLettre('G')},\nNombre de H : {CompterLettre('H')},\nNombre de I : {CompterLettre('I')},\nNombre de J : {CompterLettre('J')}" +
                 $",\nNombre de K : {CompterLettre('K')},\nNombre de L : {CompterLettre('L')},\nNombre de M : {CompterLettre('M')},\nNombre de N : {CompterLettre('N')}" +
