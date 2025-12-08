@@ -11,6 +11,11 @@ namespace Projet_POO_Mots_Glisses
         #region Main
         static void Main(string[] args)
         {
+            Lettre lettre = new Lettre();
+            Plateau plateau = new Plateau(lettre);
+            Console.WriteLine(plateau);
+            plateau.WriteFile("plateautest.csv");
+            /*
             Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
             string mot = SaisirMot();
             Console.WriteLine($"Le mot saisi est : {mot}");
@@ -19,6 +24,7 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine(dico.RechDichoRecursif(mot));
             Console.WriteLine(dico.toString()); //Attention à ne pas faire ToString car ça retourne le dico en entier et très long à charger
             Console.ReadKey();
+            */
         }
         #endregion
 

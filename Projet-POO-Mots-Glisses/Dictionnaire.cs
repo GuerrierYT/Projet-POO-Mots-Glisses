@@ -119,12 +119,15 @@ namespace Projet_POO_Mots_Glisses
             while (i <= milieu)
             {
                 temp[k++] = tab[i++];
-
+            }
             while (j <= max)
+            {
                 temp[k++] = tab[j++];
-
+            }
             for (int t = 0; t < temp.Length; t++)
+            {
                 tab[min + t] = temp[t];
+            }
         }
 
         #endregion
