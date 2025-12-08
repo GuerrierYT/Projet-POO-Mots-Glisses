@@ -106,65 +106,47 @@ namespace Projet_POO_Mots_Glisses
             }
             return positions;
         }
-        public Stack<(int, int, int)> RechercheMot(string mot) // A finir
+        public Stack<(int, int, int)> RechercheMot(string mot)
         {
             List<int> depart = AppartientBase(mot); // Positions de départ possibles
+
             if (depart.Count == 0)
             {
                 Console.WriteLine("Le mot ne peut pas commencer, il n'y a pas de lettre de départ correspondante.");
                 return null;
             }
             Stack<(int, int, int)> positions = new Stack<(int, int, int)>(); // Pile pour stocker les positions (ligne, colonne, direction)
+
             for (int i = 0; i < depart.Count; i++) // Pour chaque position de départ possible
             {
-                // On réinitialise la pile pour chaque nouvelle tentative de départ
                 positions.Clear();
+                positions.Push((taille - 1, depart[i], 0)); // On empile la position de départ : Ligne, Colonne, Direction (0 = rien testé)
 
-                // On empile la position de départ : Ligne, Colonne, Direction (0 = rien testé)
-                positions.Push((taille - 1, depart[i], 0));
-                while (positions.Count > 0 && positions.Count < mot.Length)
+                while (positions.Count > 0 && positions.Count < mot.Length) // Tant qu'on a des positions à explorer et qu'on n'a pas trouvé tout le mot
                 {
-                    // 1. On récupère l'élément du haut sans le retirer définitivement pour l'instant
-                    var (x, y, dir) = positions.Pop();
-
-                    // 2. On passe à la direction suivante
+                    var (x, y, dir) = positions.Pop(); // On récupère l'élément du haut sans le retirer définitivement pour l'instant
                     dir++;
 
-                    // On a maintenant 3 directions max : 1, 2, 3. 
-                    // Si dir > 3, on a tout exploré pour cette case, on ne la remet pas (backtracking).
                     if (dir <= 3)
                     {
                         positions.Push((x, y, dir)); // On remet l'élément avec sa nouvelle direction
-                    }
-                    else
-                    {
-                        continue; // On abandonne cette case et on retourne à la précédente au prochain tour
-                    }
+                        int nextX = x;
+                        int nextY = y;
 
-                    // 3. Calcul des coordonnées du voisin
-                    int nextX = x;
-                    int nextY = y;
+                        switch (dir)
+                        {
+                            case 1: nextY = y - 1; break; // Gauche
+                            case 2: nextY = y + 1; break; // Droite
+                            case 3: nextX = x - 1; break; // Haut
+                        }
 
-                    switch (dir)
-                    {
-                        case 1: nextY = y - 1; break; // Gauche
-                        case 2: nextY = y + 1; break; // Droite
-                        case 3: nextX = x - 1; break; // Haut (x diminue pour monter dans un tableau)
-                    }
-
-                    // Index de la lettre cherchée
-                    int indexLettre = positions.Count;
-
-                    // 4. Vérifications
-                    if (IsValide(nextX, nextY) &&
-                        plateau[nextX, nextY] == mot[indexLettre] &&
-                        !DejaVisite(positions, nextX, nextY))
-                    {
-                        positions.Push((nextX, nextY, 0)); // Trouvé ! On empile le voisin
+                        if (IsValide(nextX, nextY) && plateau[nextX, nextY] == mot[positions.Count] && !DejaVisite(positions, nextX, nextY)) // Vérifications
+                        {
+                            positions.Push((nextX, nextY, 0)); // Trouvé ! On empile le voisin
+                        }
                     }
                 }
-                // Si on sort de la boucle et qu'on a la bonne longueur, c'est gagné !
-                if (positions.Count == mot.Length)
+                if (positions.Count == mot.Length) // Si on sort de la boucle et qu'on a la bonne longueur, c'est gagné !
                 {
                     Console.WriteLine($"Mot '{mot}' trouvé !");
                     return positions;
@@ -173,12 +155,10 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine("Mot non trouvé.");
             return null;
         }
-        // Vérifie si les coordonnées sont dans la grille
-        private bool IsValide(int x, int y)
+        private bool IsValide(int x, int y) // Vérifie si la case (x,y) est dans les limites du plateau
         {
             return x >= 0 && x < taille && y >= 0 && y < taille;
         }
-        // Vérifie si la case (x,y) est déjà présente dans la pile (pour éviter de se mordre la queue)
         private bool DejaVisite(Stack<(int, int, int)> pile, int x, int y)
         {
             foreach (var item in pile)

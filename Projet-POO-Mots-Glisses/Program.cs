@@ -31,9 +31,11 @@ namespace Projet_POO_Mots_Glisses
             #endregion
             */
             #region Création du plateau
-            Lettre lettre = new Lettre();
-            Plateau plateau = new Plateau(lettre);
+            //Lettre lettre = new Lettre();
+            //Plateau plateau = new Plateau(lettre);
+            Plateau plateau = new Plateau("plateautest.csv");
             Console.WriteLine(plateau);
+            plateau.RechercheMot("BONJOUR");
             //plateau.WriteFile("plateautest.csv");
             #endregion
             /*
