@@ -1,28 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Projet_POO_Mots_Glisses
 {
     internal class Joueur
     {
-        // Attributs
+        #region Attributs
         private string nom;
         private List<string> mots;
         private List<int> scores;
+        #endregion
 
-        // Constructeurs
+        #region Constructeurs
         public Joueur(string nom)
         {
             this.nom = nom;
             mots = new List<string>();
             scores = new List<int>();
         }
-        // Propriétés
+        #endregion
 
-        // Méthodes
+        #region Propriétés
+        #endregion
+
+        #region Méthodes
         public void AjouterMot(string mot)
         {
             mots.Add(mot);
@@ -49,5 +49,6 @@ namespace Projet_POO_Mots_Glisses
             res += "\nScore : " + score;
             return res;
         }
+        #endregion
     }
 }

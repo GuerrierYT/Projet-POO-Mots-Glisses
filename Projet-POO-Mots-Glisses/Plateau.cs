@@ -9,18 +9,21 @@ namespace Projet_POO_Mots_Glisses
 {
     internal class Plateau
     {
-        // Attributs
+        #region Attributs
         private char[,] plateau;
+        #endregion
 
-        // Constructeurs
+        #region Constructeurs
         public Plateau(string filename)
         {
             ReadFile(filename);
         }
+        #endregion
 
-        // Propriétés
+        #region Propriétés
+        #endregion
 
-        // Méthodes
+        #region Méthodes
         public void WriteFile(string filename)
         {
             StreamWriter flux = null;
@@ -91,5 +94,6 @@ namespace Projet_POO_Mots_Glisses
             }
             return result;
         }
+        #endregion  
     }
 }
