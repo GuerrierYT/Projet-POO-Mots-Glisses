@@ -96,9 +96,33 @@ namespace Projet_POO_Mots_Glisses
                     flux.Close();
             }
         }
-        public void RechercheMot(string mot)
+        public List<int> AppartientBase(string mot) // Vérifie si le mot appartient à une base de départ (la première ligne)
         {
+            List<int> positions = new List<int>();
+            for (int j = 0; j < taille; j++)
+            {
+                if (plateau[taille - 1, j] == mot[0])
+                {
+                    positions.Add(j);
+                }
+            }
+            return positions;
+        }
+        public Stack<(int, int, int)> RechercheMot(string mot) // A finir
+        {
+            List<int> depart = AppartientBase(mot);
+            if (depart.Count == 0)
+            {
+                Console.WriteLine("Le mot ne peut pas commencer, il n'y a pas de lettre de départ correspondante.");
+                return null;
+            }
+            Stack<(int, int, int)> position = new Stack<(int, int, int)>();
+            for (int i = 0; i < depart.Count; i++)
+            {
+                position.Push((taille - 1, depart[i], 0)); // On empile la position de départ (ligne, colonne, index du mot)
+            }
 
+            return position;
         }
         public override string ToString() // Affichage du plateau
         {
