@@ -44,11 +44,11 @@ namespace Projet_POO_Mots_Glisses
 
         #region Méthodes
 
-        #region Lire les mots depuis le fichier "MotsFrancais.txt"
+        #region Lire les mots depuis le fichier "MotsFrancais.txt" 
 
-        public static List<string[]> LireMots()
+        public static List<string[]> LireMots()     //Fonctionnel
         {
-            string filename = "MotsFrancais.txt";
+            string filename = "Mots_Français.txt";
             if (File.Exists(filename))      // On regarde si le fichier existe
             {
                 string[] lines = File.ReadAllLines(filename);   // On lit toutes les lignes du fichier dans le tableau lines
@@ -106,7 +106,7 @@ namespace Projet_POO_Mots_Glisses
 
             while (i <= milieu && j <= max)
             {
-                if (tab[i].CompareTo(tab[j]) <= 0)
+                if (tab[i].CompareTo(tab[j]) <= 0)  // On compare les deux mots, comme si c'était des nombres
                 {
                     temp[k++] = tab[i++];
                 }
@@ -119,28 +119,33 @@ namespace Projet_POO_Mots_Glisses
             while (i <= milieu)
             {
                 temp[k++] = tab[i++];
-
+            }
             while (j <= max)
+            {
                 temp[k++] = tab[j++];
+            }
 
             for (int t = 0; t < temp.Length; t++)
+            {
                 tab[min + t] = temp[t];
+            }
         }
 
         #endregion
 
         #region Recherche dichotomique
 
-        // On a adapté la recherche dichotomique du TD de la récusrivité pour les string[]
+        // On a adapté la recherche dichotomique du TD de la récusrivité (9) pour les string[]
         public bool RechDichoRecursif(string motCherche)  //On suppose que notre tableau est déjà trié
         {
-            int index = motCherche.Length - 2; // -2 car on n'a pas de mot de taille 1 et l'index commence à 0
-            //Securité
-            if (index < 0 || index >= mots.Count)
+            int index = motCherche[0].CompareTo('A'); // Pour "ARBRE" on teste A comparé à A, donc index = 0 et on prend mots[0]
+            //Console.WriteLine($"Index du mot cherché : {index}");
+            //Securité                  
+            if (index < 0 || index >= mots.Count)   // Si index <0, il y a une erreur dans le mot fourni car on compare à A.
             {
                 return false;
             }
-            return RechercheDichoRecursif(mots[index], 0, mots[index].Length - 1, motCherche);
+            return RechercheDichoRecursif(mots[index], 0, mots[index].Length - 1, motCherche);  //Recursivité
         }
 
 

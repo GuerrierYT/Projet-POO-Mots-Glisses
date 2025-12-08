@@ -11,13 +11,28 @@ namespace Projet_POO_Mots_Glisses
         #region Main
         static void Main(string[] args)
         {
-            Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
+            #region Mise en forme
+            string ligne = "----------------------------------------------------------------------------------------------------------------------";
+            string Espace = "                                        ";
+
+            #endregion
+
+            Console.WriteLine(ligne);
+            Console.WriteLine(Espace + "Bienvenue dans le jeu des mots glissés !");
+            Console.WriteLine(ligne);
+            Console.WriteLine();
+
+            #region Chargement du jeu
+            Console.WriteLine(Espace + "Veuillez patienter pendant le chargement du jeu...");
+            Dictionnaire dico = CreerETtrierDico();
+            Console.WriteLine(dico.toString()); //Attention à ne pas faire ToString car ça retourne le dico en entier et très long à charger
+            Console.WriteLine("Dictionnaire prêt !");
+
+            #endregion
+
             string mot = SaisirMot();
             Console.WriteLine($"Le mot saisi est : {mot}");
-            Dictionnaire dico = CreerETtrierDico();
-            Console.WriteLine(dico.ToString());
             Console.WriteLine(dico.RechDichoRecursif(mot));
-            Console.WriteLine(dico.toString()); //Attention à ne pas faire ToString car ça retourne le dico en entier et très long à charger
             Console.ReadKey();
         }
         #endregion

@@ -8,11 +8,14 @@ namespace Projet_POO_Mots_Glisses
 {
     internal class Joueur
     {
-        // Attributs
+        #region Attributs
         private string nom;
         private List<string> mots;
         private List<int> scores;
 
+        #endregion
+
+        #region Constructeurs
         // Constructeurs
         public Joueur(string nom)
         {
@@ -20,9 +23,12 @@ namespace Projet_POO_Mots_Glisses
             mots = new List<string>();
             scores = new List<int>();
         }
+
+        #endregion
+
         // Propriétés
 
-        // Méthodes
+        #region Méthodes
         public void AjouterMot(string mot)
         {
             mots.Add(mot);
@@ -49,5 +55,6 @@ namespace Projet_POO_Mots_Glisses
             res += "\nScore : " + score;
             return res;
         }
+        #endregion
     }
 }
