@@ -11,7 +11,7 @@ namespace Projet_POO_Mots_Glisses
         #region Main
         static void Main(string[] args)
         {
-            #region Mise en forme
+            /*#region Mise en forme
             string ligne = "----------------------------------------------------------------------------------------------------------------------";
             string Espace = "                                        ";
 
@@ -29,7 +29,7 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine("Dictionnaire prêt !");
 
             #endregion
-
+            */
             #region Création du plateau
             Lettre lettre = new Lettre();
             Plateau plateau = new Plateau(lettre);
