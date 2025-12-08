@@ -124,7 +124,10 @@ namespace Projet_POO_Mots_Glisses
             {
                 temp[k++] = tab[j++];
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b33cb436ab1d3684ee435734eb37bc615e075308
             for (int t = 0; t < temp.Length; t++)
             {
                 tab[min + t] = temp[t];

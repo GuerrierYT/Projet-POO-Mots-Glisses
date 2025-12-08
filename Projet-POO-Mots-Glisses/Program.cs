@@ -11,6 +11,7 @@ namespace Projet_POO_Mots_Glisses
         #region Main
         static void Main(string[] args)
         {
+<<<<<<< HEAD
             #region Mise en forme
             string ligne = "----------------------------------------------------------------------------------------------------------------------";
             string Espace = "                                        ";
@@ -30,10 +31,19 @@ namespace Projet_POO_Mots_Glisses
 
             #endregion
 
+=======
+            Lettre lettre = new Lettre();
+            Plateau plateau = new Plateau(lettre);
+            Console.WriteLine(plateau);
+            plateau.WriteFile("plateautest.csv");
+            /*
+            Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
+>>>>>>> b33cb436ab1d3684ee435734eb37bc615e075308
             string mot = SaisirMot();
             Console.WriteLine($"Le mot saisi est : {mot}");
             Console.WriteLine(dico.RechDichoRecursif(mot));
             Console.ReadKey();
+            */
         }
         #endregion
 

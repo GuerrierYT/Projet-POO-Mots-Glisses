@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Projet_POO_Mots_Glisses
+﻿namespace Projet_POO_Mots_Glisses
 {
     internal class Jeu
     {
-        // Attributs
+        #region Attributs
         private Dictionnaire dictionnaire;
         private Plateau plateau;
         private Joueur joueur1;
@@ -16,8 +10,9 @@ namespace Projet_POO_Mots_Glisses
 
         private static int tempstour = 10;
         private static int tempspartie = 120;
+        #endregion
 
-        // Constructeurs
+        #region Constructeurs
         public Jeu()
         {
             this.dictionnaire = null;
@@ -32,10 +27,12 @@ namespace Projet_POO_Mots_Glisses
             this.joueur1 = joueur1;
             this.joueur2 = joueur2;
         }
+        #endregion
 
-        // Propriétés
+        #region Propriétés
+        #endregion
 
-        // Méthodes
-
+        #region Méthodes
+        #endregion
     }
 }

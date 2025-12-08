@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Projet_POO_Mots_Glisses
 {
@@ -12,22 +8,35 @@ namespace Projet_POO_Mots_Glisses
         private string nom;
         private List<string> mots;
         private List<int> scores;
+        #endregion
 
+<<<<<<< HEAD
         #endregion
 
         #region Constructeurs
         // Constructeurs
+=======
+        #region Constructeurs
+>>>>>>> b33cb436ab1d3684ee435734eb37bc615e075308
         public Joueur(string nom)
         {
             this.nom = nom;
             mots = new List<string>();
             scores = new List<int>();
         }
+<<<<<<< HEAD
 
         #endregion
 
         // Propriétés
 
+=======
+        #endregion
+
+        #region Propriétés
+        #endregion
+
+>>>>>>> b33cb436ab1d3684ee435734eb37bc615e075308
         #region Méthodes
         public void AjouterMot(string mot)
         {
