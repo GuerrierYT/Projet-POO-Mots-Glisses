@@ -1,2 +1,7 @@
 utiliser les sorted list
 Savoir absolument expliquer les lignes de code
+algorithme de Dijkstra
+
+après génération plateau aléatoire, afficher nombre de chaque lettre
+sauvegarder le plateau
+préparer 2-3 plateaux qui couvrent toute la complexité
