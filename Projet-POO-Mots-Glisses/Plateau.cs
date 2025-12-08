@@ -115,38 +115,43 @@ namespace Projet_POO_Mots_Glisses
                 return null;
             }
             Stack<(int, int, int)> position = new Stack<(int, int, int)>();
-            for (int i = 0; i < depart.Count; i++)
+            for (int i = 0; i < depart.Count; i++) // Pour chaque position de départ possible
             {
-                position.Push((taille - 1, depart[i], 0)); // On empile la position de départ (ligne, colonne, 0)
-                while (position.Count < mot.Length && position.Count > 0)
+                if (position.Count != mot.Length) // Si le mot n'a pas encore été trouvé
                 {
-                    int x = position.Peek().Item1; // Ligne actuelle
-                    int y = position.Peek().Item2; // Colonne actuelle
-                    int dir = position.Peek().Item3; // Direction déjà explorée
-                    int j = position.Count; // Index de la lettre à chercher dans le mot
-                    if (x > 0 && plateau[x, y] == mot[j])
+                    Console.WriteLine("Recherche du mot à partir de la position de départ en colonne " + depart[i]);
                     {
-                        Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + x + ", " + y + ")");
-                        position.Push((x - 1, y, 1)); // On empile la nouvelle position (ligne - 1, même colonne, 1)
-                    }
-                    else if (x < taille - 1 && plateau[x + 1, y] == mot[j])
-                    {
-                        Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + (x + 1) + ", " + y + ")");
-                        position.Push((x + 1, y, 2)); // On empile la nouvelle position (ligne + 1, même colonne, 2)
-                    }
-                    else if (y > 0 && plateau[x, y - 1] == mot[j])
-                    {
-                        Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + x + ", " + (y - 1) + ")");
-                        position.Push((x, y - 1, 3)); // On empile la nouvelle position (même ligne, colonne - 1, 3)
-                    }
-                    else
-                    {
-                        Console.WriteLine("Lettre non trouvée : " + mot[j]);
-                        position.Pop(); // On dépile la position actuelle car aucune direction n'a fonctionné
+                        position.Push((taille - 1, depart[i], 0)); // On empile la position de départ (ligne, colonne, 0)
+                        while (position.Count < mot.Length && position.Count > 0) // Tant que la pile n'est pas vide et que le mot n'est pas entièrement trouvé
+                        {
+                            int x = position.Peek().Item1; // Ligne actuelle
+                            int y = position.Peek().Item2; // Colonne actuelle
+                            int dir = position.Peek().Item3; // Direction déjà explorée
+                            int j = position.Count; // Index de la lettre à chercher dans le mot
+                            if (x > 0 && plateau[x, y] == mot[j])
+                            {
+                                Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + x + ", " + y + ")");
+                                position.Push((x - 1, y, 1)); // On empile la nouvelle position (ligne - 1, même colonne, 1)
+                            }
+                            else if (x < taille - 1 && plateau[x + 1, y] == mot[j])
+                            {
+                                Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + (x + 1) + ", " + y + ")");
+                                position.Push((x + 1, y, 2)); // On empile la nouvelle position (ligne + 1, même colonne, 2)
+                            }
+                            else if (y > 0 && plateau[x, y - 1] == mot[j])
+                            {
+                                Console.WriteLine("Lettre trouvée : " + mot[j] + " à la position (" + x + ", " + (y - 1) + ")");
+                                position.Push((x, y - 1, 3)); // On empile la nouvelle position (même ligne, colonne - 1, 3)
+                            }
+                            else
+                            {
+                                Console.WriteLine("Lettre non trouvée : " + mot[j]);
+                                position.Pop(); // On dépile la position actuelle car aucune direction n'a fonctionné
+                            }
+                        }
                     }
                 }
             }
-
 
 
             return position;
