@@ -38,7 +38,6 @@ namespace Projet_POO_Mots_Glisses
         }
         #endregion
 
-
         #region Méthodes
         #region Lire les mots depuis le fichier "MotsFrancais.txt"
         public static List<string[]> LireMots()
