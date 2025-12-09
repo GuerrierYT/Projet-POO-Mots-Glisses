@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Projet_POO_Mots_Glisses
 {
@@ -8,6 +9,7 @@ namespace Projet_POO_Mots_Glisses
         private string nom;
         private List<string> mots;
         private List<int> scores;
+        private int[] poids;
         #endregion
 
         #region Constructeurs
@@ -17,6 +19,8 @@ namespace Projet_POO_Mots_Glisses
             this.nom = nom;
             mots = new List<string>();
             scores = new List<int>();
+            Lettre lettre = new Lettre();
+            this.poids = lettre.Poids;
         }
 
         #endregion
@@ -24,6 +28,11 @@ namespace Projet_POO_Mots_Glisses
         // Propriétés
 
         #region Propriétés
+        public string Nom
+        {
+            get { return nom; }
+            set { nom = value; }
+        }
         #endregion
 
         #region Méthodes
@@ -31,10 +40,19 @@ namespace Projet_POO_Mots_Glisses
         {
             mots.Add(mot);
         }
-        public void AjouterScore(int score)
+
+        public int AjouterScore(string mot)
         {
+            int score = 0;
+            for (int i = 0; i < mot.Length; i++)
+            {
+                int index = mot[i].CompareTo('A');
+                score += poids[index];
+            }
             scores.Add(score);
+            return score;
         }
+
         public bool Contient(string mot)
         {
             return mots.Contains(mot);

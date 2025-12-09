@@ -92,18 +92,43 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine("Lancement du jeu :");
             do
             {
+                int tour = 0;
+
+                if (tour % 2 == 0)
+                {
+                    Console.WriteLine($"Au tour de {joueur1.Nom}");
+                }
+                else
+                {
+                    Console.WriteLine($"Au tour de {joueur2.Nom}");
+                }
+
                 Console.WriteLine(plateau);
                 string mot = SaisirMot();
-                if (dictionnaire.RechDichoRecursif(mot))
+
+                if (dictionnaire.RechDichoRecursif(mot) == true)
                 {
                     Stack < (int, int, int) > positions = plateau.RechercheMot(mot);
                     if (positions != null)
                     {
                         plateau.MajPlateau(positions);
+                        if (tour % 2 == 0)
+                        {
+                            joueur1.AjouterMot(mot);
+                            int score = joueur1.AjouterScore(mot);
+                            Console.WriteLine($"{joueur1.Nom} a trouvé le mot {mot} et marque {score} points !");
+                        }
+                        else
+                        {
+                            joueur2.AjouterMot(mot);
+                            int score = joueur2.AjouterScore(mot);
+                            Console.WriteLine($"{joueur2.Nom} a trouvé le mot {mot} et marque {score} points !");
+                        }
                     }
                 }
+                tour++;
             }
-            while(true);
+            while (true);
         }
 
         #region Saisie et validation du mot

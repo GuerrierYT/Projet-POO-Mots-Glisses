@@ -20,6 +20,10 @@ namespace Projet_POO_Mots_Glisses
         #endregion
 
         #region Propriétés
+        public int[] Poids
+        {
+            get { return this.poids; }
+        }
         #endregion
 
         #region Méthodes
