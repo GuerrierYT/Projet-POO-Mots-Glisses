@@ -105,6 +105,8 @@ namespace Projet_POO_Mots_Glisses
 
         #endregion
 
+        #endregion
+
         #region methodes
 
         static Dictionnaire CreerETtrierDico()

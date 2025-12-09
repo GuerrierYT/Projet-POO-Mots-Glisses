@@ -97,7 +97,7 @@ namespace Projet_POO_Mots_Glisses
                 if (dictionnaire.RechDichoRecursif(mot))
                 {
                     Stack < (int, int, int) > positions = plateau.RechercheMot(mot);
-                    if (positions.Count > 0)
+                    if (positions != null)
                     {
                         plateau.MajPlateau(positions);
                     }
