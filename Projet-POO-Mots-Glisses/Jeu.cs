@@ -1,4 +1,6 @@
-﻿namespace Projet_POO_Mots_Glisses
+﻿using System;
+
+namespace Projet_POO_Mots_Glisses
 {
     internal class Jeu
     {
@@ -28,36 +30,65 @@
             this.joueur2 = joueur2;
         }
 
-        public Jeu(Dictionnaire dictionnaire, Joueur joueur1, Joueur joueur2)
+        public Jeu(Dictionnaire dictionnaire, Plateau plateau, string joueur1, string joueur2)      // Avec des string
+        {
+            this.dictionnaire = dictionnaire;
+            this.plateau = plateau;
+            this.joueur1 = new Joueur(joueur1);
+            this.joueur2 = new Joueur(joueur2);
+        }
+
+        public Jeu(Dictionnaire dictionnaire, Joueur joueur1, Joueur joueur2, Lettre lettre)
         {
             this.dictionnaire = dictionnaire;
             this.joueur1 = joueur1;
             this.joueur2 = joueur2;
-            int plat = ChoixPlateau();
-            this.plateau = plateau;
+            this.plateau = new Plateau(lettre);
+        }
+
+        public Jeu(Dictionnaire dictionnaire, string joueur1, string joueur2, Lettre lettre)    //Avec des string
+        {
+            this.dictionnaire = dictionnaire;
+            this.joueur1 = new Joueur(joueur1);
+            this.joueur2 = new Joueur(joueur2);
+            this.plateau = new Plateau(lettre);
         }
         #endregion
 
         #region Propriétés
+
+        public Plateau Plateau
+        {
+            get { return plateau; }
+        }
+        public Dictionnaire Dictionnaire
+        {
+            get { return dictionnaire; }
+        }
+        public Joueur Joueur1
+        {
+            get { return joueur1; }
+        }
+        public Joueur Joueur2
+        {
+            get { return joueur2; }
+        }
+        public static int Tempstour
+        {
+            get { return tempstour; }
+            set { tempstour = value; }
+        }
+        public static int Tempspartie
+        {
+            get { return tempspartie; }
+            set { tempspartie = value; }
+        }
         #endregion
 
         #region Méthodes
-        static void Jeu()
+        public void LancerJeu()
         {
-            Lettre lettre = new Lettre();
-            int plateau = ChoixPlateau();
-            switch (plateau)
-            {
-                case 1:
-                    //Créer le plateau 1
-                    break;
-                case 2:
-                    //Créer le plateau 2
-                    break;
-                case 3:
-                    Plateau plateau = new Plateau(lettre);
-                    break;
-            }
+            Console.WriteLine("Bonjour");
         }
 
         #region Saisie et validation du mot
@@ -92,40 +123,11 @@
 
         #endregion
 
-        static int SaisirNombrePositif()    //Utiliser un Console.WriteLine avant !!
-        {
-            int rep = -1;
-            do
-            {
-                string choix = Console.ReadLine();
-                try
-                {
-                    rep = Convert.ToInt32(choix);
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Veuillez entrer un nombre valide.");
-                }
-            }
-            while (rep < 0);
-        }
+        
 
 
 
-        static int ChoixPlateau()       //Retourne 1, 2 ou 3
-        {
-            Console.WriteLine("Choississez un plateau à utiliser : ");
-            Console.WriteLine("1) Plateau 1");
-            Console.WriteLine("2) Plateau 2");
-            Console.WriteLine("3) Plateau aléatoire");
-            int choix = 0
-            do
-            {
-                choix = SaisirNombrePositif();
-            }
-            while (choix < 1 || choix > 3);
-            return choix;
-        }
+
         #endregion
     }
 }

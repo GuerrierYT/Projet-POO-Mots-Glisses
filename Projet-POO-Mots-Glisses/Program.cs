@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,45 +28,70 @@ namespace Projet_POO_Mots_Glisses
             Dictionnaire dico = CreerETtrierDico();
             Console.WriteLine("Dictionnaire prêt !");
             Console.WriteLine();
-
-            int choix = QueFaire(espace, dico);
-
-            if (choix != 1)
+            int choix;
+            do
             {
-                Console.WriteLine("\nMerci d'avoir utilisé le programme. Au revoir !");
-                return;
+                choix = QueFaire(espace, dico);
+
+                if (choix == 1)
+                {
+                    Lettre lettre = new Lettre();
+                    Jeu jeu = new Jeu();
+
+                    Console.WriteLine(ligne + "\n");
+                    Console.WriteLine(espace + "Creation des personnages...\n" + espace);
+                    Console.WriteLine("Nommez le joueur 1 :");
+                    string nomJ1 = Console.ReadLine();
+                    Console.WriteLine("Nommez le joueur 2 :");
+                    string nomJ2 = Console.ReadLine();
+
+                    Console.WriteLine("\n" + ligne + "\n");
+                    int plateau = ChoixPlateau();
+
+                    switch (plateau)
+                    {
+                        case 1:
+                            Plateau plateau1 = new Plateau("plateau1.csv");
+                            jeu = new Jeu(dico, plateau1, nomJ1, nomJ2);
+                            break;
+                        case 2:
+                            Plateau plateau2 = new Plateau("plateau2.csv");
+                            jeu = new Jeu(dico, plateau2, nomJ1, nomJ2);
+                            break;
+                        case 3:
+                            Plateau plateauAleatoire = new Plateau(lettre);
+                            jeu = new Jeu(dico, plateauAleatoire, nomJ1, nomJ2);
+                            break;
+                    }
+                    jeu.LancerJeu();
+                    Console.WriteLine(jeu.Plateau);
+                }
             }
-            else
-            {
+            while (choix != 5);
 
-                Console.WriteLine(ligne + "\n");
-                Console.WriteLine(espace + "Creation des personnages...\n" + espace);
-                Console.WriteLine("Nommez le joueur 1 :");
-                string nomJ1 = Console.ReadLine();
-                Console.WriteLine("Nommez le joueur 2 :");
-                string nomJ2 = Console.ReadLine();
-                Jeu jeu = new Jeu(dico, null, nomJ1, nomJ2);
-
-            }
-
-            #endregion
-
-            #region Création du plateau
-            //Lettre lettre = new Lettre();
-            //Plateau plateau = new Plateau(lettre);
-            Plateau plateau = new Plateau("plateautest.csv");
-            Console.WriteLine(plateau);
-            plateau.RechercheMot("BONJOUR");
-            //plateau.WriteFile("plateautest.csv");
-            #endregion
-            /*
-            Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
-            string mot = SaisirMot();
-            Console.WriteLine($"Le mot saisi est : {mot}");
-            Console.WriteLine(dico.RechDichoRecursif(mot));
+            Console.WriteLine("\nMerci d'avoir utilisé le programme. Au revoir !");
             Console.ReadKey();
-            */
+
         }
+
+        #endregion
+
+        #region Création du plateau
+        //Lettre lettre = new Lettre();
+        //Plateau plateau = new Plateau(lettre);
+        //Plateau plateau = new Plateau("plateautest.csv");
+        //Console.WriteLine(plateau);
+        //plateau.RechercheMot("BONJOUR");
+        //plateau.WriteFile("plateautest.csv");
+        #endregion
+        /*
+        Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
+        string mot = SaisirMot();
+        Console.WriteLine($"Le mot saisi est : {mot}");
+        Console.WriteLine(dico.RechDichoRecursif(mot));
+        Console.ReadKey();
+        */
+
         #endregion
 
         #region methodes
@@ -82,11 +108,12 @@ namespace Projet_POO_Mots_Glisses
         static int QueFaire(string espace, Dictionnaire dico)
         {
             int rep = 0;
-            Console.WriteLine("Que souhaitez-vous faire ?\n");
+            Console.WriteLine("\nQue souhaitez-vous faire ?\n");
             Console.WriteLine(espace + "1) Démarrer le jeu.");
             Console.WriteLine(espace + "2) Afficher les caractéristiques du dictionnaire.");
             Console.WriteLine(espace + "3) Rechercher un mot dans le dictionnaire.");
             Console.WriteLine(espace + "4) Afficher le dictionnaire. (attention, prend beaucoup de temps à charger)");
+            Console.WriteLine(espace + "5) Quitter le programme.");
             do
             {
                 Console.WriteLine("\nVotre choix : ");
@@ -100,7 +127,7 @@ namespace Projet_POO_Mots_Glisses
                     Console.WriteLine("Veuillez entrer un nombre valide.");
                 }
             }
-            while (rep < 1 || rep > 4);
+            while (rep < 0);
             switch (rep)
             {
 
@@ -125,17 +152,87 @@ namespace Projet_POO_Mots_Glisses
                 case 4: // Afficher le dictionnaire
                     Console.WriteLine(dico.ToString());
                     break;
-                default:
-                    Console.WriteLine("Choix invalide.");
+
+                case 5:
                     break;
 
-                    return rep;
+                default:
+                    Console.WriteLine("Choix invalide.");
+                    rep = -1;
+                    break;
             }
-
+            return rep;
         }
 
+ 
 
+        static int ChoixPlateau()       //Retourne 1, 2 ou 3
+        {
+            Console.WriteLine("Choississez un plateau à utiliser : ");
+            Console.WriteLine("1) Plateau 1");
+            Console.WriteLine("2) Plateau 2");
+            Console.WriteLine("3) Plateau aléatoire");
+            int choix = 0;
+                do
+            {
+                choix = SaisirNombrePositif();
+            }
+            while (choix < 1 || choix > 3);
+            return choix;
+        }
+
+        static int SaisirNombrePositif()    //Utiliser un Console.WriteLine avant !!
+        {
+            int rep = -1;
+            do
+            {
+                string choix = Console.ReadLine();
+                try
+                {
+                    rep = Convert.ToInt32(choix);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Veuillez entrer un nombre valide.");
+                }
+            }
+            while (rep < 0);
+            return rep;
+        }
+
+        #region Saisie et validation du mot
+        static string SaisirMot()
+        {
+            string mot;
+            bool estValide = false;
+            do
+            {
+                Console.WriteLine("Veuillez saisir un mot d'au moins 2 lettres :");
+                mot = Console.ReadLine();
+                estValide = EstMotValide(mot);
+                if (estValide == false)
+                {
+                    Console.WriteLine("Le mot ne doit contenir que des lettres.");
+                }
+            }
+            while (mot.Length < 2 || estValide == false);
+            return mot.ToUpper();
+        }
+        static bool EstMotValide(string mot)
+        {
+            foreach (char c in mot)
+            {
+                if (!char.IsLetter(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         #endregion
+
+        #endregion
+
     }
 }
