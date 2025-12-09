@@ -1,9 +1,4 @@
 ﻿using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projet_POO_Mots_Glisses
 {
@@ -87,14 +82,14 @@ namespace Projet_POO_Mots_Glisses
 
         #endregion
 
-        #region Création du plateau
+        #region Tests
         //Lettre lettre = new Lettre();
         //Plateau plateau = new Plateau(lettre);
         //Plateau plateau = new Plateau("plateautest.csv");
         //Console.WriteLine(plateau);
         //plateau.RechercheMot("BONJOUR");
         //plateau.WriteFile("plateautest.csv");
-        #endregion
+
         /*
         Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
         string mot = SaisirMot();
@@ -102,7 +97,7 @@ namespace Projet_POO_Mots_Glisses
         Console.WriteLine(dico.RechDichoRecursif(mot));
         Console.ReadKey();
         */
-
+        #endregion
         #endregion
 
         #endregion
@@ -141,6 +136,7 @@ namespace Projet_POO_Mots_Glisses
                 }
             }
             while (rep < 0);
+
             switch (rep)
             {
 
@@ -177,7 +173,7 @@ namespace Projet_POO_Mots_Glisses
             return rep;
         }
 
- 
+
 
         static int ChoixPlateau()       //Retourne 1, 2 ou 3
         {
@@ -186,7 +182,7 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine("2) Plateau 2");
             Console.WriteLine("3) Plateau aléatoire");
             int choix = 0;
-                do
+            do
             {
                 choix = SaisirNombrePositif();
             }
