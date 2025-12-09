@@ -11,25 +11,45 @@ namespace Projet_POO_Mots_Glisses
         #region Main
         static void Main(string[] args)
         {
-            /*#region Mise en forme
+            #region Mise en forme
             string ligne = "----------------------------------------------------------------------------------------------------------------------";
-            string Espace = "                                        ";
+            string espace = "                                        ";
 
             #endregion
 
             Console.WriteLine(ligne);
-            Console.WriteLine(Espace + "Bienvenue dans le jeu des mots glissés !");
+            Console.WriteLine(espace + "Bienvenue dans le jeu des mots glissés !");
             Console.WriteLine(ligne);
             Console.WriteLine();
 
             #region Chargement du jeu
-            Console.WriteLine(Espace + "Veuillez patienter pendant le chargement du jeu...");
+            Console.WriteLine(espace + "Veuillez patienter pendant le chargement du jeu...");
             Dictionnaire dico = CreerETtrierDico();
-            Console.WriteLine(dico.toString()); //Attention à ne pas faire ToString car ça retourne le dico en entier et très long à charger
             Console.WriteLine("Dictionnaire prêt !");
+            Console.WriteLine();
+
+            int choix = QueFaire(espace, dico);
+
+            if (choix != 1)
+            {
+                Console.WriteLine("\nMerci d'avoir utilisé le programme. Au revoir !");
+                return;
+            }
+            else
+            {
+
+                Console.WriteLine(ligne + "\n");
+                Console.WriteLine(espace + "Creation des personnages...\n" + espace);
+                Console.WriteLine("Nommez le joueur 1 :");
+                string nomJ1 = Console.ReadLine();
+                Console.WriteLine("Nommez le joueur 2 :");
+                string nomJ2 = Console.ReadLine();
+                Jeu jeu = new Jeu(dico, null, nomJ1, nomJ2);
+
+            }
 
             #endregion
-            */
+
             #region Création du plateau
             //Lettre lettre = new Lettre();
             //Plateau plateau = new Plateau(lettre);
@@ -59,37 +79,62 @@ namespace Projet_POO_Mots_Glisses
             return dictionnaire;
         }
 
-        #region Saisie et validation du mot
-        static string SaisirMot()
+        static int QueFaire(string espace, Dictionnaire dico)
         {
-            string mot;
-            bool estValide = false;
+            int rep = 0;
+            Console.WriteLine("Que souhaitez-vous faire ?\n");
+            Console.WriteLine(espace + "1) Démarrer le jeu.");
+            Console.WriteLine(espace + "2) Afficher les caractéristiques du dictionnaire.");
+            Console.WriteLine(espace + "3) Rechercher un mot dans le dictionnaire.");
+            Console.WriteLine(espace + "4) Afficher le dictionnaire. (attention, prend beaucoup de temps à charger)");
             do
             {
-                Console.WriteLine("Veuillez saisir un mot d'au moins 2 lettres :");
-                mot = Console.ReadLine();
-                estValide = EstMotValide(mot);
-                if(estValide == false)
+                Console.WriteLine("\nVotre choix : ");
+                string choix = Console.ReadLine();
+                try
                 {
-                    Console.WriteLine("Le mot ne doit contenir que des lettres.");
+                    rep = Convert.ToInt32(choix);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Veuillez entrer un nombre valide.");
                 }
             }
-            while (mot.Length < 2 || estValide == false);
-            return mot.ToUpper();
-        }
-        static bool EstMotValide(string mot)
-        {
-            foreach (char c in mot)
+            while (rep < 1 || rep > 4);
+            switch (rep)
             {
-                if (!char.IsLetter(c))
-                {
-                    return false;
-                }
+
+                case 1: // Démarrer le jeu
+                    Console.WriteLine("Démarrage du jeu...");
+                    break;
+                case 2: // Afficher les caractéristiques du dictionnaire
+                    Console.WriteLine(dico.toString());
+                    break;
+                case 3: // Rechercher un mot dans le dictionnaire
+                    string mot = SaisirMot();
+                    bool trouve = dico.RechDichoRecursif(mot);
+                    if (trouve)
+                    {
+                        Console.WriteLine($"Le mot \"{mot}\" a été trouvé dans le dictionnaire.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Le mot \"{mot}\" n'a pas été trouvé dans le dictionnaire.");
+                    }
+                    break;
+                case 4: // Afficher le dictionnaire
+                    Console.WriteLine(dico.ToString());
+                    break;
+                default:
+                    Console.WriteLine("Choix invalide.");
+                    break;
+
+                    return rep;
             }
-            return true;
+
         }
 
-        #endregion
+
 
         #endregion
     }
