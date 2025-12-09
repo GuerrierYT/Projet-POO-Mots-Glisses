@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 
 namespace Projet_POO_Mots_Glisses
@@ -53,6 +54,16 @@ namespace Projet_POO_Mots_Glisses
             return score;
         }
 
+        public int CompterScore()
+        {
+            int score = 0;
+            for (int i = 0; i < scores.Count; i++)
+            {
+                score += scores[i];
+            }
+            return score;
+        }
+
         public bool Contient(string mot)
         {
             return mots.Contains(mot);
@@ -70,6 +81,15 @@ namespace Projet_POO_Mots_Glisses
             }
             res += "\nScore : " + score;
             return res;
+        }
+
+        public static bool operator >(Joueur j1, Joueur j2)
+        {
+            return j1.CompterScore() > j2.CompterScore();
+        }
+        public static bool operator <(Joueur j1, Joueur j2)
+        {
+            return j1.CompterScore() < j2.CompterScore();
         }
         #endregion
     }

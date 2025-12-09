@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Projet_POO_Mots_Glisses
 {
@@ -87,12 +88,19 @@ namespace Projet_POO_Mots_Glisses
         #endregion
 
         #region Méthodes
-        public void LancerJeu()
+
+        #region Lancer le jeu
+        public void LancerJeu(int tempsTotal,int tempsTour)
         {
+            string ligne = "----------------------------------------------------------------------------------------------------------------------";
+            string espace = "                                        ";
+            DateTime DebutPartie = DateTime.Now;
             Console.WriteLine("Lancement du jeu :");
+            TimeSpan tempsPartie;
+            bool terminer = false; 
+            int tour = 0;
             do
             {
-                int tour = 0;
 
                 if (tour % 2 == 0)
                 {
@@ -102,11 +110,15 @@ namespace Projet_POO_Mots_Glisses
                 {
                     Console.WriteLine($"Au tour de {joueur2.Nom}");
                 }
-
+                DateTime debutTour = DateTime.Now;  //On note l'heure de début du tour
                 Console.WriteLine(plateau);
                 string mot = SaisirMot();
-
-                if (dictionnaire.RechDichoRecursif(mot) == true)
+                TimeSpan tempsEcoule = DateTime.Now - debutTour;    //On fait la différence entre l'heure du début du tour et maintenant
+                if (tempsEcoule.TotalSeconds > tempsTour)
+                {
+                    Console.WriteLine("Temps écoulé ! Tour suivant.");
+                }
+                else if (dictionnaire.RechDichoRecursif(mot) == true)
                 {
                     Stack < (int, int, int) > positions = plateau.RechercheMot(mot);
                     if (positions != null)
@@ -127,9 +139,48 @@ namespace Projet_POO_Mots_Glisses
                     }
                 }
                 tour++;
+                tempsPartie = DateTime.Now - DebutPartie;
+                if (tempsPartie.TotalSeconds > tempsTotal)
+                {
+                    terminer = true;
+                }
             }
-            while (true);
+            while (terminer != true);
+
+            #region Fin de partie
+            Console.WriteLine($"\n{ligne}\n{espace}Partie terminée !\n");
+
+            Console.WriteLine($"\n{espace}C'est maintenant l'heure des résultats...\n");
+            Thread.Sleep(250);
+            Console.WriteLine($"\n{espace}Etes-vous prêt ? \n");
+            Thread.Sleep(1000);
+            Console.WriteLine($"\n{espace}3\n");
+            Thread.Sleep(1000);
+            Console.WriteLine($"\n{espace}2\n");
+            Thread.Sleep(1000); 
+            Console.WriteLine($"\n{espace}1\n\n\n");
+            Thread.Sleep(1000);
+
+            if (joueur1 > joueur2)
+            {
+                Console.WriteLine($"{espace}{joueur1.Nom} a gagné avec {joueur1.CompterScore()} points contre {joueur2.CompterScore()} points pour {joueur2.Nom} !\n\n\n");
+            }
+            else if (joueur1 < joueur2)
+            {
+                Console.WriteLine($"{espace}{joueur2.Nom} a gagné avec {joueur2.CompterScore()} points contre {joueur1.CompterScore()} points pour {joueur1.Nom} !\n\n\n");
+            }
+            else
+            {
+                Console.WriteLine($"{espace}Egalité !!! Vous avez tous les deux {joueur2.CompterScore()} !\n\n\n");
+            }
+            Thread.Sleep(2000);
+            #endregion
+            Console.WriteLine($"{espace}Merci d'avoir joué ! Retour au menu principal.\n\n\n");
+            Thread.Sleep(1000);
+            Console.WriteLine(ligne + "\n\n");
         }
+
+        #endregion
 
         #region Saisie et validation du mot
         static string SaisirMot()
@@ -162,11 +213,6 @@ namespace Projet_POO_Mots_Glisses
         }
 
         #endregion
-
-        
-
-
-
 
         #endregion
     }
