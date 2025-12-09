@@ -249,6 +249,51 @@ namespace Projet_POO_Mots_Glisses
 
         #endregion
 
+        #region Saisie du temps de jeu
+        static int TempsPartie()
+        {
+            int temps;
+            Console.WriteLine("Veuillez saisir le temps total de la partie en secondes (minimum 20 secondes) :");
+            do
+            {
+                temps = SaisirNombrePositif();
+            }
+            while (temps < 20);
+            if (temps % 2 == 1)
+            {
+                temps++;   //On s'assure que le temps sera équitable
+                Console.WriteLine($"On prendra {temps} secondes pour la partie afin que le temps soit équitable entre les deux joueurs.");
+            }
+            return temps;
+        }
+
+        static int TempsTour(int tempsTotal)
+        {
+            Console.WriteLine("Veuillez saisir le temps maximum par tour en secondes (minimum 5 secondes) :");
+            int tempsTour;
+            bool estValide = false;
+            do
+            {
+                tempsTour = SaisirNombrePositif();
+                if (tempsTour < 5)
+                {
+                    Console.WriteLine("Le temps par tour doit être d'au moins 5 secondes.");
+                }
+                else if (tempsTour * 2 > tempsTotal)
+                {
+                    Console.WriteLine($"Le temps par tour est trop élevé pour le temps total de la partie ({tempsTotal}). Veuillez choisir un temps plus court.");
+                }
+                else
+                {
+                    estValide = true;
+                }
+            }
+            while (estValide != true);
+            return tempsTour;
+        }
+
+        #endregion
+
         #endregion
 
     }
