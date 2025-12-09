@@ -180,6 +180,32 @@ namespace Projet_POO_Mots_Glisses
             }
             return result;
         }
-        #endregion  
+        public void MajPlateau(Stack<(int, int, int)> positions)
+        {
+            while (positions.Count > 0)
+            {
+                var (x, y, dir) = positions.Pop();
+                plateau[x, y] = ' '; // On vide la case
+            }
+            for (int j = 0; j < taille; j++) // Pour chaque colonne, on fait tomber les lettres
+            {
+                for (int i = taille - 1; i >= 0; i--)
+                {
+                    if (plateau[i, j] == ' ')
+                    {
+                        for (int k = i - 1; k >= 0; k--)
+                        {
+                            if (plateau[k, j] != ' ')
+                            {
+                                plateau[i, j] = plateau[k, j];
+                                plateau[k, j] = ' ';
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }

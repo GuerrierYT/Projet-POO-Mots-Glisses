@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Projet_POO_Mots_Glisses
 {
@@ -88,7 +89,21 @@ namespace Projet_POO_Mots_Glisses
         #region Méthodes
         public void LancerJeu()
         {
-            Console.WriteLine("Bonjour");
+            Console.WriteLine("Lancement du jeu :");
+            do
+            {
+                Console.WriteLine(plateau);
+                string mot = SaisirMot();
+                if (dictionnaire.RechDichoRecursif(mot))
+                {
+                    Stack < (int, int, int) > positions = plateau.RechercheMot(mot);
+                    if (positions.Count > 0)
+                    {
+                        plateau.MajPlateau(positions);
+                    }
+                }
+            }
+            while(true);
         }
 
         #region Saisie et validation du mot

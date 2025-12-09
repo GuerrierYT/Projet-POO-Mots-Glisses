@@ -64,7 +64,6 @@ namespace Projet_POO_Mots_Glisses
                             break;
                     }
                     jeu.LancerJeu();
-                    Console.WriteLine(jeu.Plateau);
                 }
             }
             while (choix != 5);
