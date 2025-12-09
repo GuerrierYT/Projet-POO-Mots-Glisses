@@ -38,16 +38,28 @@ namespace Projet_POO_Mots_Glisses
                     Lettre lettre = new Lettre();
                     Jeu jeu = new Jeu();
 
+                    #region création personnage
                     Console.WriteLine(ligne + "\n");
                     Console.WriteLine(espace + "Creation des personnages...\n" + espace);
                     Console.WriteLine("Nommez le joueur 1 :");
                     string nomJ1 = Console.ReadLine();
-                    Console.WriteLine("Nommez le joueur 2 :");
-                    string nomJ2 = Console.ReadLine();
+                    string nomJ2 = nomJ1;
+                    do
+                    {
+                        Console.WriteLine("Nommez le joueur 2 :");
+                        nomJ2 = Console.ReadLine();
+                        if (nomJ2 == nomJ1)
+                        {
+                            Console.WriteLine("Le nom du joueur 2 ne peut pas être identique à celui du joueur 1. Veuillez choisir un autre nom.");
+                        }
+                    }
+                    while (nomJ2 == nomJ1);
+                    #endregion
 
                     Console.WriteLine("\n" + ligne + "\n");
-                    int plateau = ChoixPlateau();
 
+                    #region Plateau
+                    int plateau = ChoixPlateau();
                     switch (plateau)
                     {
                         case 1:

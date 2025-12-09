@@ -169,14 +169,15 @@ namespace Projet_POO_Mots_Glisses
         }
         public override string ToString() // Affichage du plateau
         {
-            string result = "";
+            string espace = "                                        ";
+            string result = "" + espace;
             for (int i = 0; i < taille; i++)
             {
-                for (int j = 0; j < taille; j++)
+                for (int j =  0; j < taille; j++)
                 {
                     result += plateau[i, j] + " ";
                 }
-                result += "\n";
+                result += "\n" + espace;
             }
             return result;
         }
