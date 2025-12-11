@@ -82,7 +82,7 @@ namespace Projet_POO_Mots_Glisses
                     jeu.LancerJeu(tempsTotal, tempsTour);
                 }
             }
-            while (choix != 5);
+            while (choix != 6);
 
             Console.WriteLine("\nMerci d'avoir utilisé le programme. Au revoir !");
             Console.ReadKey();
@@ -130,7 +130,8 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine(espace + "2) Afficher les caractéristiques du dictionnaire.");
             Console.WriteLine(espace + "3) Rechercher un mot dans le dictionnaire.");
             Console.WriteLine(espace + "4) Afficher le dictionnaire. (attention, prend beaucoup de temps à charger)");
-            Console.WriteLine(espace + "5) Quitter le programme.");
+            Console.WriteLine(espace + "5) Afficher des infos sur les lettres.");
+            Console.WriteLine(espace + "6) Quitter le programme.");
             do
             {
                 Console.WriteLine("\nVotre choix : ");
@@ -171,6 +172,11 @@ namespace Projet_POO_Mots_Glisses
                     break;
 
                 case 5:
+                    Lettre lettre = new Lettre();
+                    Console.WriteLine(lettre.ToString());
+                    break;
+
+                case 6:
                     break;
 
                 default:
