@@ -77,6 +77,16 @@ namespace Projet_POO_Mots_Glisses
                             Console.WriteLine("Génération du plateau en cours...");
                             Plateau plateauAleatoire = new Plateau(lettre);
                             jeu = new Jeu(dico, plateauAleatoire, nomJ1, nomJ2);
+                            Console.WriteLine(plateauAleatoire);
+                            Console.WriteLine("Voulez-vous le sauvegarder ? (O/N)");
+                            string reponse = Console.ReadLine();
+                            if (reponse.ToUpper() == "O")
+                            {
+                                Console.WriteLine("Entrez le nom du fichier (avec l'extension .csv) :");
+                                string nomFichier = Console.ReadLine();
+                                plateauAleatoire.WriteFile(nomFichier);
+                                Console.WriteLine("Plateau sauvegardé !");
+                            }
                             break;
                     }
                     jeu.LancerJeu(tempsTotal, tempsTour);
