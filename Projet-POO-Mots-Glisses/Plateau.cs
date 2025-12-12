@@ -77,7 +77,7 @@ namespace Projet_POO_Mots_Glisses
                 while ((line = flux.ReadLine()) != null && i < taille)
                 {
                     char[] lettres = line.Split(sep).Select(s => Convert.ToChar(s)).ToArray();
-                    for (int j = 0; j < 8 && j < lettres.Length; j++)
+                    for (int j = 0; j < taille && j < lettres.Length; j++)
                     {
                         plateau[i, j] = lettres[j];
                     }

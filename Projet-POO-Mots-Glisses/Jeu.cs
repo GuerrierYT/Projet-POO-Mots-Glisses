@@ -94,14 +94,14 @@ namespace Projet_POO_Mots_Glisses
         {
             string ligne = "----------------------------------------------------------------------------------------------------------------------";
             string espace = "                                        ";
-            DateTime DebutPartie = DateTime.Now;
+            DateTime DebutPartie = DateTime.Now; // On note l'heure de début de la partie
             Console.WriteLine("Lancement du jeu :");
             TimeSpan tempsPartie;
             bool terminer = false; 
             int tour = 0;
             do
             {
-
+                DateTime debutTour = DateTime.Now;  //On note l'heure de début du tour
                 if (tour % 2 == 0)
                 {
                     Console.WriteLine($"Au tour de {joueur1.Nom}");
@@ -110,7 +110,8 @@ namespace Projet_POO_Mots_Glisses
                 {
                     Console.WriteLine($"Au tour de {joueur2.Nom}");
                 }
-                DateTime debutTour = DateTime.Now;  //On note l'heure de début du tour
+                TimeSpan tempsrestant = TimeSpan.FromSeconds(tempsTour) - (DateTime.Now - debutTour);
+                Console.WriteLine(tempsrestant);
                 Console.WriteLine(plateau);
                 string mot = SaisirMot();
                 TimeSpan tempsEcoule = DateTime.Now - debutTour;    //On fait la différence entre l'heure du début du tour et maintenant
