@@ -90,14 +90,14 @@ namespace Projet_POO_Mots_Glisses
         #region Méthodes
 
         #region Lancer le jeu
-        public void LancerJeu(int tempsTotal,int tempsTour)
+        public void LancerJeu(int tempsTotal, int tempsTour)
         {
             string ligne = "----------------------------------------------------------------------------------------------------------------------";
             string espace = "                                        ";
             DateTime DebutPartie = DateTime.Now; // On note l'heure de début de la partie
             Console.WriteLine("Lancement du jeu :");
-            TimeSpan tempsPartie;
-            bool terminer = false; 
+            TimeSpan tempsPartie = TimeSpan.Zero;
+            bool terminer = false;
             int tour = 0;
             do
             {
@@ -110,8 +110,7 @@ namespace Projet_POO_Mots_Glisses
                 {
                     Console.WriteLine($"Au tour de {joueur2.Nom}");
                 }
-                TimeSpan tempsrestant = TimeSpan.FromSeconds(tempsTour) - (DateTime.Now - debutTour);
-                Console.WriteLine(tempsrestant);
+                Console.WriteLine("Temps restant : " + Convert.ToInt32(tempspartie - tempsPartie.TotalSeconds) + " s"); // Affichage du temps restant
                 Console.WriteLine(plateau);
                 string mot = SaisirMot();
                 TimeSpan tempsEcoule = DateTime.Now - debutTour;    //On fait la différence entre l'heure du début du tour et maintenant
@@ -121,7 +120,7 @@ namespace Projet_POO_Mots_Glisses
                 }
                 else if (dictionnaire.RechDichoRecursif(mot) == true)
                 {
-                    Stack < (int, int, int) > positions = plateau.RechercheMot(mot);
+                    Stack<(int, int, int)> positions = plateau.RechercheMot(mot);
                     if (positions != null)
                     {
                         plateau.MajPlateau(positions);
@@ -159,7 +158,7 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine($"\n{espace}3\n");
             Thread.Sleep(1000);
             Console.WriteLine($"\n{espace}2\n");
-            Thread.Sleep(1000); 
+            Thread.Sleep(1000);
             Console.WriteLine($"\n{espace}1\n\n\n");
             Thread.Sleep(1000);
 
