@@ -74,6 +74,11 @@ namespace Projet_POO_Mots_Glisses
                             jeu = new Jeu(dico, plateau2, nomJ1, nomJ2);
                             break;
                         case 3:
+                           Console.Write("Veuillez entrer le nom du fichier du plateau enregistré (avec l'extension .csv) : ");
+                            Plateau plateauenregistre = new Plateau(Console.ReadLine());
+                            jeu = new Jeu(dico, plateauenregistre, nomJ1, nomJ2);
+                            break;
+                        case 4:
                             Console.WriteLine("Génération du plateau en cours...");
                             Plateau plateauAleatoire = new Plateau(lettre);
                             jeu = new Jeu(dico, plateauAleatoire, nomJ1, nomJ2);
@@ -189,7 +194,8 @@ namespace Projet_POO_Mots_Glisses
             Console.WriteLine("Choississez un plateau à utiliser : ");
             Console.WriteLine("1) Plateau 1");
             Console.WriteLine("2) Plateau 2");
-            Console.WriteLine("3) Plateau aléatoire");
+            Console.WriteLine("3) Plateau enregistré (.csv)");
+            Console.WriteLine("4) Plateau aléatoire");
             int choix = 0;
             do
             {
