@@ -28,14 +28,14 @@ namespace Projet_POO_Mots_Glisses
             {
                 choix = QueFaire(espace, dico);
 
-                if (choix == 1)
+                if (choix == 1) // Début du jeu
                 {
                     Lettre lettre = new Lettre();
                     Jeu jeu = new Jeu();
 
                     #region création personnage
                     Console.WriteLine(ligne + "\n");
-                    Console.WriteLine(espace + "Creation des personnages...\n" + espace);
+                    Console.WriteLine(espace + "Creation des personnages :\n" + espace);
                     Console.WriteLine("Nommez le joueur 1 :");
                     string nomJ1 = Console.ReadLine();
                     string nomJ2 = nomJ1;
@@ -77,6 +77,17 @@ namespace Projet_POO_Mots_Glisses
                             Console.WriteLine("Génération du plateau en cours...");
                             Plateau plateauAleatoire = new Plateau(lettre);
                             jeu = new Jeu(dico, plateauAleatoire, nomJ1, nomJ2);
+                            Console.WriteLine(plateauAleatoire);
+
+                            Console.WriteLine("Voulez-vous le sauvegarder ? (O/N)"); // Demande sauvegarde
+                            string reponse = Console.ReadLine();
+                            if (reponse.ToUpper() == "O")
+                            {
+                                Console.WriteLine("Entrez le nom du fichier (avec l'extension .csv) :");
+                                string nomFichier = Console.ReadLine();
+                                plateauAleatoire.WriteFile(nomFichier);
+                                Console.WriteLine("Plateau sauvegardé !");
+                            }
                             break;
                     }
                     jeu.LancerJeu(tempsTotal, tempsTour);
@@ -90,22 +101,6 @@ namespace Projet_POO_Mots_Glisses
         }
 
         #endregion
-
-        #region Création du plateau
-        //Lettre lettre = new Lettre();
-        //Plateau plateau = new Plateau(lettre);
-        //Plateau plateau = new Plateau("plateautest.csv");
-        //Console.WriteLine(plateau);
-        //plateau.RechercheMot("BONJOUR");
-        //plateau.WriteFile("plateautest.csv");
-        #endregion
-        /*
-        Console.WriteLine("Bienvenue dans le jeu des mots glissés !");
-        string mot = SaisirMot();
-        Console.WriteLine($"Le mot saisi est : {mot}");
-        Console.WriteLine(dico.RechDichoRecursif(mot));
-        Console.ReadKey();
-        */
 
         #endregion
 
@@ -150,7 +145,7 @@ namespace Projet_POO_Mots_Glisses
             {
 
                 case 1: // Démarrer le jeu
-                    Console.WriteLine("Démarrage du jeu...");
+                    Console.WriteLine("Démarrage du jeu :");
                     break;
                 case 2: // Afficher les caractéristiques du dictionnaire
                     Console.WriteLine(dico.toString());
