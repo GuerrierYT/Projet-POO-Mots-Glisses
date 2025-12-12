@@ -139,6 +139,7 @@ namespace Projet_POO_Mots_Glisses
                     }
                 }
                 tour++;
+                Thread.Sleep(500);
                 tempsPartie = DateTime.Now - DebutPartie;
                 if (tempsPartie.TotalSeconds > tempsTotal)
                 {
