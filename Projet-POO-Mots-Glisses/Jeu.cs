@@ -11,9 +11,6 @@ namespace Projet_POO_Mots_Glisses
         private Plateau plateau;
         private Joueur joueur1;
         private Joueur joueur2;
-
-        private static int tempstour = 10;
-        private static int tempspartie = 120;
         #endregion
 
         #region Constructeurs
@@ -75,16 +72,6 @@ namespace Projet_POO_Mots_Glisses
         {
             get { return joueur2; }
         }
-        public static int Tempstour
-        {
-            get { return tempstour; }
-            set { tempstour = value; }
-        }
-        public static int Tempspartie
-        {
-            get { return tempspartie; }
-            set { tempspartie = value; }
-        }
         #endregion
 
         #region Méthodes
@@ -110,7 +97,7 @@ namespace Projet_POO_Mots_Glisses
                 {
                     Console.WriteLine($"Au tour de {joueur2.Nom}");
                 }
-                Console.WriteLine("Temps restant : " + Convert.ToInt32(tempspartie - tempsPartie.TotalSeconds) + " s"); // Affichage du temps restant
+                Console.WriteLine("Temps restant : " + Convert.ToInt32(tempsTotal - tempsPartie.TotalSeconds) + " s"); // Affichage du temps restant
                 Console.WriteLine(plateau);
                 string mot = SaisirMot();
                 TimeSpan tempsEcoule = DateTime.Now - debutTour;    //On fait la différence entre l'heure du début du tour et maintenant
