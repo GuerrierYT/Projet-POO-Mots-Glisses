@@ -83,6 +83,7 @@ namespace Projet_POO_Mots_Glisses
                             Plateau plateauAleatoire = new Plateau(lettre);
                             jeu = new Jeu(dico, plateauAleatoire, nomJ1, nomJ2);
                             Console.WriteLine(plateauAleatoire);
+                            Console.WriteLine(plateauAleatoire.AffichageNombreLettres());
 
                             Console.WriteLine("Voulez-vous le sauvegarder ? (O/N)"); // Demande sauvegarde
                             string reponse = Console.ReadLine();

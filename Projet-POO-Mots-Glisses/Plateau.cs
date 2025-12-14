@@ -167,13 +167,59 @@ namespace Projet_POO_Mots_Glisses
             }
             return false;
         }
+        public int NombreLettre(char lettre) // Compte le nombre d'occurrences d'une lettre sur le plateau
+        {
+            int count = 0;
+            for (int i = 0; i < taille; i++)
+            {
+                for (int j = 0; j < taille; j++)
+                {
+                    if (plateau[i, j] == lettre)
+                        count++;
+                }
+            }
+            return count;
+        }
+        public int[] NombreLettres() // Compte le nombre d'occurrences de chaque lettre sur le plateau
+        {
+            int[] counts = new int[26];
+            for (int i = 0; i < taille; i++)
+            {
+                for (int j = 0; j < taille; j++)
+                {
+                    char lettre = plateau[i, j];
+                    if (lettre >= 'A' && lettre <= 'Z')
+                    {
+                        counts[lettre - 'A']++;
+                    }
+                }
+            }
+            return counts;
+        }
+        public string AffichageNombreLettres() // Affiche le nombre d'occurrences de chaque lettre sur le plateau
+        {
+            int[] counts = NombreLettres();
+            string result = "Occurrences des lettres sur le plateau :\n";
+            int total = 0;
+            for (int i = 0; i < counts.Length; i++)
+            {
+                if (counts[i] > 0)
+                {
+                    char lettre = (char)('A' + i);
+                    result += $"{lettre} : {counts[i]}\n";
+                    total += counts[i];
+                }
+            }
+            result += $"Total des lettres : {total}\n";
+            return result;
+        }
         public override string ToString() // Affichage du plateau
         {
             string espace = "                                        ";
             string result = "" + espace;
             for (int i = 0; i < taille; i++)
             {
-                for (int j =  0; j < taille; j++)
+                for (int j = 0; j < taille; j++)
                 {
                     result += plateau[i, j] + " ";
                 }
