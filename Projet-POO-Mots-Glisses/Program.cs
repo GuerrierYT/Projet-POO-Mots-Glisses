@@ -74,7 +74,7 @@ namespace Projet_POO_Mots_Glisses
                             jeu = new Jeu(dico, plateau2, nomJ1, nomJ2);
                             break;
                         case 3:
-                           Console.Write("Veuillez entrer le nom du fichier du plateau enregistré (avec l'extension .csv) : ");
+                            Console.Write("Veuillez entrer le nom du fichier du plateau enregistré (avec l'extension .csv) : ");
                             Plateau plateauenregistre = new Plateau(Console.ReadLine());
                             jeu = new Jeu(dico, plateauenregistre, nomJ1, nomJ2);
                             break;
@@ -187,7 +187,7 @@ namespace Projet_POO_Mots_Glisses
             return rep;
         }
 
- 
+
 
         static int ChoixPlateau()       //Retourne 1, 2 ou 3
         {
@@ -201,7 +201,7 @@ namespace Projet_POO_Mots_Glisses
             {
                 choix = SaisirNombrePositif();
             }
-            while (choix < 1 || choix > 3);
+            while (choix < 1 || choix > 4);
             return choix;
         }
 
