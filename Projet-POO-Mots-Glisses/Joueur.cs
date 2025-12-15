@@ -49,6 +49,7 @@ namespace Projet_POO_Mots_Glisses
             {
                 int index = mot[i].CompareTo('A');
                 score += poids[index];
+                score += mot.Length * 2;
             }
             scores.Add(score);
             return score;
