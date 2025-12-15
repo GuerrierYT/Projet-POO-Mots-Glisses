@@ -66,14 +66,14 @@ namespace Projet_POO_Mots_Glisses
         }
         private void ReadFile(string filename) // Lecture du plateau depuis un fichier
         {
-            StreamReader flux = null;
+            StreamReader flux = null;   //On vérifie que le flux est null
             string line;
             int i = 0;
             char[] sep = { ';' };
             plateau = new char[taille, taille];
             try
             {
-                flux = new StreamReader(filename);
+                flux = new StreamReader(filename);  //On ouvre le flux
                 while ((line = flux.ReadLine()) != null && i < taille)
                 {
                     char[] lettres = line.Split(sep).Select(s => Convert.ToChar(s)).ToArray();
@@ -90,7 +90,7 @@ namespace Projet_POO_Mots_Glisses
             }
             finally
             {
-                if (flux != null)
+                if (flux != null)   //On ferme le flux
                     flux.Close();
             }
         }
@@ -227,7 +227,7 @@ namespace Projet_POO_Mots_Glisses
             }
             return result;
         }
-        public void MajPlateau(Stack<(int, int, int)> positions)
+        public void MajPlateau(Stack<(int, int, int)> positions)    // Gravité
         {
             while (positions.Count > 0)
             {
