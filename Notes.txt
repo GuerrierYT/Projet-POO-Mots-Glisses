@@ -1,7 +1,22 @@
-utiliser les sorted list
-Savoir absolument expliquer les lignes de code
-algorithme de Dijkstra
+Rapport de Projet : Jeu des Mots Glissés (C#)
+Introduction Ce projet consiste en la réalisation d'un jeu de lettres en console, codé en C# et basé sur les principes de la Programmation Orientée Objet (POO). L'objectif du jeu est de trouver des mots dans une grille ; lorsqu'un mot est validé, les lettres disparaissent et les lettres supérieures "glissent" vers le bas, renouvelant ainsi les possibilités de jeu.
 
-après génération plateau aléatoire, afficher nombre de chaque lettre
-sauvegarder le plateau
-préparer 2-3 plateaux qui couvrent toute la complexité
+Architecture Technique L'application est structurée autour de plusieurs classes interagissant entre elles pour séparer la logique de jeu, la gestion des données et l'affichage.
+
+Gestion des Données (Dictionnaire et Lettre) La classe Lettre gère les caractéristiques des caractères (poids pour le score, fréquence d'apparition) en lisant un fichier de configuration. La classe Dictionnaire est centrale pour la validation des mots. Nous avons implémenté deux algorithmes majeurs pour optimiser la performance :
+
+Tri Fusion : Un tri récursif pour organiser la liste des mots chargés depuis un fichier texte.
+
+Recherche Dichotomique : Une méthode récursive permettant de vérifier quasi-instantanément si un mot saisi par le joueur existe dans le dictionnaire trié.
+
+Logique du Plateau (Plateau) Le plateau est une matrice de caractères (char[,]). Cette classe contient la logique la plus complexe du projet :
+
+Recherche de chemin (Backtracking) : La méthode RechercheMot utilise une pile (Stack) et explore récursivement les cases adjacentes (haut, bas, gauche, droite) pour vérifier si le mot saisi est présent physiquement sur la grille.
+
+Mécanique de gravité : La méthode MajPlateau gère l'aspect "Mots Glissés". Elle supprime les lettres trouvées et fait descendre les caractères situés au-dessus pour combler les vides.
+
+Déroulement du Jeu (Jeu, Joueur, Program) La classe Jeu orchestre la partie. Elle gère le temps (calculé via DateTime et TimeSpan), l'alternance des tours entre les deux joueurs et la fin de partie. Les joueurs, instances de la classe Joueur, accumulent des scores calculés en fonction du poids des lettres trouvées. Enfin, le Program sert de point d'entrée et gère les menus textuels.
+
+Algorithmes Clés Nous avons mis l'accent sur l'utilisation de la récursivité, notamment pour le tri du dictionnaire et la recherche dichotomique. De plus, la gestion du plateau exploite des structures de données dynamiques (comme les Stack) pour mémoriser les coordonnées des lettres valides lors de la recherche d'un mot.
+
+Conclusion Ce projet nous a permis de mettre en pratique la manipulation de fichiers, la complexité algorithmique (tri et recherche) et la logique événementielle d'un jeu au tour par tour, le tout dans une architecture objet modulaire.
