@@ -73,7 +73,7 @@ namespace Projet_POO_Mots_Glisses
 
         #region tri fusion
 
-        // On a repris le tr fusion du TD de la récusrivité, et on l'a adapté pour les string[]
+        // On a repris le tri fusion du TD de la récusrivité, et on l'a adapté pour les string[]
         public void Tri_Fusion()
         {
             for (int i = 0; i < mots.Count; i++)
