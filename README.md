@@ -179,13 +179,11 @@ Le programme trie ensuite chaque groupe de mots avant d'utiliser la recherche di
     |-- Lettres.txt
     |-- MotsFrancais.txt
     |-- plateau1.csv
-    |-- plateau2.csv
-    `-- diagramme UML.jpg
+    `-- plateau2.csv
 ```
 
 ## Documents fournis
 
 - `MOTS_GLISSES.pdf` : sujet ou consignes du projet.
 - `diagramme UML.png` : diagramme UML principal.
-- `Projet-POO-Mots-Glisses/diagramme UML.jpg` : copie alternative du diagramme UML.
 - `Notes.txt` : notes de travail ou brouillon de rapport.
